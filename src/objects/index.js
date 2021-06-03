@@ -1,0 +1,1 @@
+export const initializeObjects = (app) => []
