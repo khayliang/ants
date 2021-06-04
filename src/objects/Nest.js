@@ -8,6 +8,7 @@ export default class extends GameObject {
   }
 
   addAnt(ant) {
+    ant.setCoords(this.getCoords())
     this.ants.push(ant)
   }
 }

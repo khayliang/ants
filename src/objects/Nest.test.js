@@ -13,3 +13,12 @@ test('Ants can be added to the nest', () => {
   nest.addAnt(ant)
   expect(nest.ants).toEqual(expect.arrayContaining([ant]))
 })
+
+test('Ants added to the nest have start coords at the nest', () => {
+  const nest = new Nest()
+  const coords = { x: 50, y: 50 }
+  nest.setCoords(coords)
+  const ant = new Ant()
+  nest.addAnt(ant)
+  expect(ant.getCoords()).toMatchObject(nest.getCoords())
+})

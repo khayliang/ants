@@ -7,8 +7,15 @@ export default class {
     return this.graphic
   }
 
-  setCoords(x, y) {
+  setCoords({ x, y }) {
     this.graphic.x = x
     this.graphic.y = y
+  }
+
+  getCoords() {
+    return {
+      x: this.graphic.x,
+      y: this.graphic.y,
+    }
   }
 }

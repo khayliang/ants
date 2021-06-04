@@ -12,8 +12,9 @@ test('Coordinate of GameObject can be set', () => {
   const obj = new GameObject(new Graphics())
   const x = 50
   const y = 50
-  obj.setCoords(x, y)
+  obj.setCoords({ x, y })
   const graphic = obj.getGraphic()
-  expect(graphic.x).toEqual(x)
-  expect(graphic.y).toEqual(y)
+  const coords = obj.getCoords()
+  expect(coords.x).toEqual(x)
+  expect(coords.y).toEqual(y)
 })

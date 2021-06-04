@@ -16,8 +16,14 @@ app.stage.sortableChildren = true
 
 const objects = []
 
-for (let i = 0; i != ants; i += 1) {
-  objects.push(new Ant())
+const nest = new Nest()
+nest.setCoords({ x: 50, y: 50 })
+objects.push(nest)
+
+for (let i = 0; i !== ants; i += 1) {
+  const ant = new Ant()
+  nest.addAnt(ant)
+  objects.push(ant)
 }
 
 const map = new Map(app)

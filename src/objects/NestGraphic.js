@@ -5,7 +5,7 @@ export default class extends Graphics {
   constructor() {
     super()
     this.beginFill(0xffffff)
-    this.drawRegularPolygon(0, 0, 7, 3, 0)
+    this.drawCircle(0, 0, 20)
     this.endFill()
     this.zIndex = 1
   }
