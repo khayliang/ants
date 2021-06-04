@@ -22,3 +22,13 @@ test('Ant can move in different radians', () => {
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
 })
+
+test('Ant movement can be random', () => {
+  const ant = new Ant()
+  const ant1 = new Ant()
+  ant.setRandomizer(() => Math.random())
+  ant1.setRandomizer(() => Math.random())
+  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
+  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
+  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
+})
