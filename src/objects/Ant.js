@@ -1,20 +1,9 @@
-import { Graphics } from 'pixi.js'
-import '@pixi/graphics-extras'
+import AntGraphic from './AntGraphic'
+import GameObject from './GameObject'
 
-export class AntGraphic extends Graphics {
+export default class extends GameObject {
   constructor() {
-    super()
-    this.beginFill(0xffffff)
-    this.drawRegularPolygon(0, 0, 7, 3, 0)
-    this.endFill()
-    this.zIndex = 1
+    super(new AntGraphic())
   }
-}
-
-export class Ant {
-  getGraphic() {
-    return new AntGraphic()
-  }
-
   update() {}
 }

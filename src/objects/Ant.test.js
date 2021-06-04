@@ -1,6 +1,7 @@
-import { Ant, AntGraphic } from './Ant'
+import Ant from './Ant'
+import AntGraphic from './AntGraphic'
 
-test('Ant must have graphic property to render on pixijs', () => {
+test('Ant must have AntGraphic property to render on pixijs', () => {
   const ant = new Ant()
   expect(ant.getGraphic()).toBeInstanceOf(AntGraphic)
 })
