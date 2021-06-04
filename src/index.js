@@ -6,7 +6,7 @@ import Ant from './objects/Ant'
 import './index.css'
 import Nest from './objects/Nest'
 
-const ants = 1
+const ants = 10
 
 const app = new Application({
   width: window.innerWidth,
@@ -17,12 +17,13 @@ app.stage.sortableChildren = true
 const objects = []
 
 const nest = new Nest()
-nest.setCoords({ x: 50, y: 50 })
+nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 objects.push(nest)
 
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant()
-  ant.setRadians(Math.random()*Math.PI*2)
+  ant.setRadians(Math.random() * Math.PI * 2)
+  ant.setRandomizer(() => Math.random() - 0.5)
   nest.addAnt(ant)
   objects.push(ant)
 }

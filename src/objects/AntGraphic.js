@@ -11,6 +11,6 @@ export default class extends Graphics {
   }
 
   setRadians(rad) {
-    this.rotation = rad + Math.PI/2
+    this.rotation = rad + Math.PI / 2
   }
 }

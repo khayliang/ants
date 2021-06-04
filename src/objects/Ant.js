@@ -6,17 +6,21 @@ export default class extends GameObject {
     super(new AntGraphic())
     this.speed = 1
   }
+
   setRandomizer(randClosure) {
     this.getRandomValue = randClosure
   }
-  getRandomValue () {
+
+  getRandomValue() {
     return 0
   }
+
   update() {
     const coords = this.getCoords()
+    this.setRadians(this.getRadians() + this.getRandomValue())
     const newCoords = {
-      x: coords.x + this.speed * Math.cos(this.getRadians()+this.getRandomValue()),
-      y: coords.y + this.speed * Math.sin(this.getRadians()+this.getRandomValue()),
+      x: coords.x + this.speed * Math.cos(this.getRadians()),
+      y: coords.y + this.speed * Math.sin(this.getRadians()),
     }
     this.setCoords(newCoords)
     return this
