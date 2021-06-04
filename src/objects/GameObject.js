@@ -1,6 +1,7 @@
 export default class {
   constructor(graphic) {
     this.graphic = graphic
+    this.rad = this.graphic.rotation
   }
 
   getGraphic() {
@@ -11,6 +12,15 @@ export default class {
     this.graphic.x = x
     this.graphic.y = y
     return this
+  }
+
+  setRadians(rad) {
+    if (this.graphic.setRadians) this.graphic.setRadians(rad)
+    this.rad = rad
+  }
+
+  getRadians() {
+    return this.rad
   }
 
   getCoords() {

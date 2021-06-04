@@ -9,4 +9,8 @@ export default class extends Graphics {
     this.endFill()
     this.zIndex = 1
   }
+
+  setRadians(rad) {
+    this.rotation = rad + Math.PI/2
+  }
 }

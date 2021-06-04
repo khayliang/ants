@@ -18,3 +18,20 @@ test('Coordinate of GameObject can be set', () => {
   const objCoords = obj.getCoords()
   expect(objCoords).toMatchObject(coords)
 })
+
+test('radians of GameObject can be set', () => {
+  const obj = new GameObject(new Graphics())
+  const rad = 2
+  obj.setRadians(rad)
+  const objRad = obj.getRadians()
+  expect(objRad).toEqual(rad)
+})
+
+test('When setting radians, use graphics setRadians function if present', () => {
+  const graphic = new Graphics()
+  graphic.setRadians = jest.fn()
+  const obj = new GameObject(graphic)
+  const rad = 2
+  obj.setRadians(rad)
+  expect(graphic.setRadians.mock.calls.length).toBe(1)
+})
