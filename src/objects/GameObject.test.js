@@ -10,11 +10,11 @@ test('GameObject must have graphic', () => {
 
 test('Coordinate of GameObject can be set', () => {
   const obj = new GameObject(new Graphics())
-  const x = 50
-  const y = 50
-  obj.setCoords({ x, y })
-  const graphic = obj.getGraphic()
-  const coords = obj.getCoords()
-  expect(coords.x).toEqual(x)
-  expect(coords.y).toEqual(y)
+  const coords = {
+    x: 50,
+    y: 50
+  }
+  obj.setCoords(coords)
+  const objCoords = obj.getCoords()
+  expect(objCoords).toMatchObject(coords)
 })
