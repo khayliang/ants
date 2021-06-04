@@ -12,7 +12,7 @@ export default class extends GameObject {
     const coords = this.getCoords()
     const newCoords = {
       x: coords.x + this.speed * Math.sin(this.rad),
-      y: coords.y + this.speed * Math.cos(this.rad) 
+      y: coords.y + this.speed * Math.cos(this.rad),
     }
     this.setCoords(newCoords)
     return this

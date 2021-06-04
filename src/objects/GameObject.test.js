@@ -12,7 +12,7 @@ test('Coordinate of GameObject can be set', () => {
   const obj = new GameObject(new Graphics())
   const coords = {
     x: 50,
-    y: 50
+    y: 50,
   }
   obj.setCoords(coords)
   const objCoords = obj.getCoords()
