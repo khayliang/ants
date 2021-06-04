@@ -16,9 +16,8 @@ test('Ants can be added to the nest', () => {
 
 test('Ants added to the nest have start coords at the nest', () => {
   const nest = new Nest()
-  const coords = { x: 50, y: 50 }
-  nest.setCoords(coords)
   const ant = new Ant()
-  nest.addAnt(ant)
+  const coords = { x: 50, y: 50 }
+  nest.setCoords(coords).addAnt(ant)
   expect(ant.getCoords()).toMatchObject(nest.getCoords())
 })
