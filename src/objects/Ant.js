@@ -7,7 +7,9 @@ export default class extends GameObject {
     this.rad = 0
     this.speed = 1
   }
-
+  setRadians(rad) {
+    this.rad = rad
+  }
   update() {
     const coords = this.getCoords()
     const newCoords = {

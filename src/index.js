@@ -22,6 +22,7 @@ objects.push(nest)
 
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant()
+  ant.setRadians(Math.random()*Math.PI*2)
   nest.addAnt(ant)
   objects.push(ant)
 }
