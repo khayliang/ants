@@ -11,7 +11,7 @@ class Map {
 
   start() {
     this.objects.forEach((obj) => {
-      this.app.ticker.add(() => obj.update())
+      if (obj.update) this.app.ticker.add(() => obj.update())
     })
   }
 }

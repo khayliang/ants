@@ -23,7 +23,7 @@ test('objects can be added to the map', () => {
   expect(mockObject.getGraphic.mock.calls.length).toBe(1)
 })
 
-test('when start map, objects in the map are added to ticker', () => {
+test('when start map, objects in the map with update method are added to ticker', () => {
   const mockObjects = []
   const objNo = 10
   for (let i = 0; i !== objNo; i += 1) {
@@ -31,7 +31,7 @@ test('when start map, objects in the map are added to ticker', () => {
       update: jest.fn(),
     })
   }
-
+  mockObjects.push({})
   // mock pixijs ticker add function
   const addMock = jest.fn()
 
