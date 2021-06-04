@@ -6,7 +6,9 @@ test('Ant must have AntGraphic property to render on pixijs', () => {
   expect(ant.getGraphic()).toBeInstanceOf(AntGraphic)
 })
 
-test('Ant must have an update function', () => {
+test('When ant update ant must move', () => {
   const ant = new Ant()
-  expect(ant.update).toBeDefined()
+  expect(ant.getCoords()).not.toMatchObject(ant.update().getCoords())
+  expect(ant.getCoords()).not.toMatchObject(ant.update().getCoords())
+  expect(ant.getCoords()).not.toMatchObject(ant.update().getCoords())
 })

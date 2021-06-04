@@ -10,6 +10,7 @@ export default class {
   setCoords({ x, y }) {
     this.graphic.x = x
     this.graphic.y = y
+    return this
   }
 
   getCoords() {

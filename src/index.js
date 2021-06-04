@@ -6,7 +6,7 @@ import Ant from './objects/Ant'
 import './index.css'
 import Nest from './objects/Nest'
 
-const ants = 10
+const ants = 1
 
 const app = new Application({
   width: window.innerWidth,
