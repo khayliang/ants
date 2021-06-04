@@ -1,7 +1,7 @@
 import { Application } from 'pixi.js'
 
 import Map from './Map'
-import Ant from "./objects/Ant"
+import Ant from './objects/Ant'
 
 import './index.css'
 import Nest from './objects/Nest'

@@ -5,5 +5,6 @@ export default class extends GameObject {
   constructor() {
     super(new AntGraphic())
   }
+
   update() {}
 }

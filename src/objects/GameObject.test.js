@@ -1,13 +1,12 @@
-import { Graphics } from "pixi.js"
+import { Graphics } from 'pixi.js'
 
-import GameObject from "./GameObject"
+import GameObject from './GameObject'
 
-test("GameObject must have graphic", () => {
+test('GameObject must have graphic', () => {
   const graphic = new Graphics()
   const obj = new GameObject(graphic)
   expect(obj.getGraphic()).toBe(graphic)
 })
-
 
 test('Coordinate of GameObject can be set', () => {
   const obj = new GameObject(new Graphics())

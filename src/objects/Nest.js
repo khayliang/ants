@@ -1,12 +1,13 @@
-import GameObject from "./GameObject"
-import NestGraphic from "./NestGraphic"
+import GameObject from './GameObject'
+import NestGraphic from './NestGraphic'
 
 export default class extends GameObject {
-  constructor(){
+  constructor() {
     super(new NestGraphic())
     this.ants = []
   }
-  addAnt(ant){
+
+  addAnt(ant) {
     this.ants.push(ant)
   }
 }

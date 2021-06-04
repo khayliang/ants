@@ -1,11 +1,13 @@
 export default class {
-  constructor(graphic){
+  constructor(graphic) {
     this.graphic = graphic
   }
-  getGraphic(){
+
+  getGraphic() {
     return this.graphic
   }
-  setCoords(x, y){
+
+  setCoords(x, y) {
     this.graphic.x = x
     this.graphic.y = y
   }
