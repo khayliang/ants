@@ -13,24 +13,20 @@ const app = new Application({
   height: window.innerHeight,
 })
 app.stage.sortableChildren = true
-
-const objects = []
+const map = new Map(app)
 
 const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
-objects.push(nest)
+map.addObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant()
   ant.setRadians(Math.random() * Math.PI * 2)
   ant.setRandomizer(() => Math.random() - 0.5)
   nest.addAnt(ant)
-  objects.push(ant)
+  
+  map.addObject(ant)
 }
-
-const map = new Map(app)
-
-objects.forEach((obj) => map.addObject(obj))
 
 map.start()
 
