@@ -1,10 +1,12 @@
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
+import PheromoneTrail from './PheromoneTrail'
 
 export default class extends GameObject {
   constructor() {
     super(new AntGraphic())
     this.speed = 1
+    this.pheromones = new PheromoneTrail()
   }
 
   setRandomizer(randClosure) {
@@ -13,6 +15,10 @@ export default class extends GameObject {
 
   getRandomValue() {
     return 0
+  }
+
+  sprayPheromone() {
+    this.pheromones.add(this.getCoords())
   }
 
   update() {

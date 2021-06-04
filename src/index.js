@@ -24,7 +24,7 @@ for (let i = 0; i !== ants; i += 1) {
   ant.setRadians(Math.random() * Math.PI * 2)
   ant.setRandomizer(() => Math.random() - 0.5)
   nest.addAnt(ant)
-  
+
   map.addObject(ant)
 }
 

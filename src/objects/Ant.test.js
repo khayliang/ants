@@ -35,3 +35,12 @@ test('Ant movement can be random', () => {
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
 })
+
+test('Ant can lay down a pheromone trail', () => {
+  const ant = new Ant()
+  const trailAmt = 10
+  for (let i = 0; i != trailAmt; i += 1) {
+    ant.sprayPheromone()
+  }
+  expect(ant.pheromones.getPheromones().length).toEqual(trailAmt)
+})
