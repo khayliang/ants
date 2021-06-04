@@ -1,11 +1,15 @@
 class Map {
-  constructor(app, objects) {
+  constructor(app) {
     this.app = app
-    this.objects = objects
+    this.objects = []
+  }
+
+  addObject(obj) {
+    this.objects.push(obj)
+    if (obj.getGraphic) this.app.stage.addChild(obj.getGraphic())
   }
 
   start() {
-    if (!Array.isArray(this.objects)) throw Error('No object array')
     this.objects.forEach((obj) => {
       this.app.ticker.add(() => obj.update())
     })
