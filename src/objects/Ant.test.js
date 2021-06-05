@@ -1,5 +1,7 @@
 import Ant from './Ant'
 import AntGraphic from './AntGraphic'
+import PheromoneTrail from './PheromoneTrail'
+jest.mock('./PheromoneTrail')
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
   const ant = new Ant()
@@ -42,5 +44,12 @@ test('Ant can lay down a pheromone trail', () => {
   for (let i = 0; i !== trailAmt; i += 1) {
     ant.sprayPheromone()
   }
-  expect(ant.pheromones.getPheromones().length).toEqual(trailAmt)
+  expect(ant.pheromones.add).toHaveBeenCalledTimes(trailAmt)
+})
+
+test('Ant updates pheromone trail', () => {
+  const ant = new Ant()
+  expect(ant.pheromones.update).not.toHaveBeenCalled()
+  ant.update()
+  expect(ant.pheromones.update).toHaveBeenCalled()
 })

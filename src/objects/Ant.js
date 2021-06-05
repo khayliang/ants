@@ -5,10 +5,10 @@ import PheromoneTrail from './PheromoneTrail'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
-  constructor() {
+  constructor(addChild, removeChild) {
     super(new AntGraphic())
     this.speed = 1
-    this.pheromones = new PheromoneTrail()
+    this.pheromones = new PheromoneTrail(addChild, removeChild)
   }
 
   setRandomizer(randClosure) {
@@ -33,6 +33,8 @@ export default class extends GameObject {
       y: coords.y + this.speed * Math.sin(this.getRadians()),
     }
     this.setCoords(newCoords)
+    this.sprayPheromone()
+    this.pheromones.update()
     return this
   }
 }
