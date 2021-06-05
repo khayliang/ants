@@ -7,14 +7,13 @@ import './index.css'
 import Nest from './objects/Nest'
 import OccupancyGrid from './occupancy/OccupancyGrid'
 
-const ants = 1
+const ants = 20
 
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
 })
 app.stage.sortableChildren = true
-app.ticker.maxFPS = 2
 const map = new Map(app)
 const grid = new OccupancyGrid({
   width: window.innerWidth,
@@ -33,7 +32,7 @@ for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant({
     addChild: (obj) => app.stage.addChild(obj),
     removeChild: (obj) => app.stage.removeChild(obj),
-    // getRandomValue: () => (Math.random() - 0.5)*0.5,
+    getRandomValue: () => (Math.random() - 0.5)*0.5,
     radians: Math.random() * Math.PI * 2,
     speed: 1,
     interval: 20,

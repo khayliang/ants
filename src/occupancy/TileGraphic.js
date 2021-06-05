@@ -3,7 +3,7 @@ import { Graphics } from 'pixi.js'
 export default class extends Graphics {
   constructor({ x, y, width, height }) {
     super()
-    this.beginFill(0x8e1600)
+    this.beginFill(0x404040)
     this.drawRect(x, y, width, height)
     this.endFill()
     this.lineStyle(1, 0xffffff)
