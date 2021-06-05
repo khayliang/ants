@@ -20,8 +20,7 @@ export default class extends GameObject {
   }
 
   sprayPheromone() {
-    const pheromone = new Pheromone()
-    pheromone.setCoords(this.getCoords())
+    const pheromone = new Pheromone(this.getCoords())
     this.pheromones.add(pheromone)
   }
 
