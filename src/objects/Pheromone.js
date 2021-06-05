@@ -11,6 +11,7 @@ export default class extends GameObject {
 
   update() {
     this.age += 1
+    this.getGraphic().alpha = 1 - this.age/this.lifetime
     return this
   }
 

@@ -8,8 +8,10 @@ export default class extends GameObject {
     addChild = () => {},
     removeChild = () => {},
     getRandomValue = () => 0,
+    getObjectAtCoords = () => [],
     radians = 0,
     interval = 10,
+    viewDistance = 10,
     speed = 1,
     trailLength = 10,
   } = {}) {
@@ -23,9 +25,11 @@ export default class extends GameObject {
 
     this.setRadians(radians)
 
+    this.getRandomValue = getRandomValue
+    this.getObjectAtCoords = getObjectAtCoords
     this.speed = speed
     this.pheromoneInterval = interval
-    this.getRandomValue = getRandomValue
+    this.viewDistance = viewDistance
 
     this.updateAmt = 0
   }
@@ -40,6 +44,20 @@ export default class extends GameObject {
 
   getRandomValue() {
     return 0
+  }
+
+  getObjectAtCoords() {
+    return []
+  }
+
+  peekInfront(){
+    const coords = this.getCoords()
+    const rad = this.getRadians()
+    const coordsToPeek = {
+      x: coords.x + this.viewDistance * Math.cos(rad),
+      y: coords.y + this.viewDistance * Math.sin(rad)
+    }
+    return this.getObjectAtCoords(coordsToPeek)
   }
 
   sprayPheromone() {
