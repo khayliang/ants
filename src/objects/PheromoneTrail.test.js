@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import Pheromone from './Pheromone'
 
 jest.mock('./Pheromone')
@@ -18,7 +20,9 @@ test('Pheromone are displayed on the map at coord', () => {
   const PheromoneTrail = require('./PheromoneTrail').default
 
   const addChildMock = jest.fn()
-  const trail = new PheromoneTrail(addChildMock)
+  const trail = new PheromoneTrail({
+    addChild: addChildMock,
+  })
   const coords = { x: 5, y: 5 }
   trail.add(coords)
   expect(Pheromone).toBeCalledWith(coords)
@@ -47,7 +51,10 @@ test('When pheromone in trail expires, pheremone is unmounted from app', () => {
 
   const removeChildMock = jest.fn()
 
-  const trail = new PheromoneTrail(() => {}, removeChildMock, lifetime)
+  const trail = new PheromoneTrail({
+    removeChild: removeChildMock,
+    lifetime,
+  })
 
   const coords = { x: 5, y: 5 }
   trail.add(coords)

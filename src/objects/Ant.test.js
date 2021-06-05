@@ -1,15 +1,19 @@
-import Ant from './Ant'
+/* eslint-disable global-require */
+
 import AntGraphic from './AntGraphic'
-import PheromoneTrail from './PheromoneTrail'
 
 jest.mock('./PheromoneTrail')
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant()
   expect(ant.getGraphic()).toBeInstanceOf(AntGraphic)
 })
 
 test('When ant update ant must move', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant()
   expect(ant.getCoords()).not.toMatchObject(ant.update().getCoords())
   expect(ant.getCoords()).not.toMatchObject(ant.update().getCoords())
@@ -17,11 +21,13 @@ test('When ant update ant must move', () => {
 })
 
 test('Ant can move in different radians', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant({
-    radians: 2
+    radians: 2,
   })
   const ant1 = new Ant({
-    radians: 1
+    radians: 1,
   })
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
@@ -29,11 +35,13 @@ test('Ant can move in different radians', () => {
 })
 
 test('Ant movement can be random', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant({
-    getRandomValue: () => Math.random()
+    getRandomValue: () => Math.random(),
   })
   const ant1 = new Ant({
-    getRandomValue: () => Math.random()
+    getRandomValue: () => Math.random(),
   })
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
@@ -44,6 +52,8 @@ test('Ant movement can be random', () => {
 })
 
 test('Ant can lay down a pheromone trail', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant()
   const trailAmt = 10
   for (let i = 0; i !== trailAmt; i += 1) {
@@ -53,6 +63,8 @@ test('Ant can lay down a pheromone trail', () => {
 })
 
 test('Ant updates pheromone trail', () => {
+  const Ant = require('./Ant').default
+
   const ant = new Ant()
   expect(ant.pheromones.update).not.toHaveBeenCalled()
   ant.update()
@@ -60,10 +72,12 @@ test('Ant updates pheromone trail', () => {
 })
 
 test('Ant updates pheromone trail every interval', () => {
+  const Ant = require('./Ant').default
+
   const interval = 5
 
   const ant = new Ant({
-    interval
+    interval,
   })
   const sprayPheromoneMock = jest.fn()
   ant.sprayPheromone = sprayPheromoneMock
@@ -74,4 +88,23 @@ test('Ant updates pheromone trail every interval', () => {
     ant.update()
   }
   expect(sprayPheromoneMock).toHaveBeenCalledTimes(expectedSprayedAmt)
+})
+
+test('Ant can specify length of pheromone trail', () => {
+  jest.unmock('./PheromoneTrail')
+  jest.resetModules()
+  const Ant = require('./Ant').default
+
+  const interval = 3
+  const trailLength = 10
+
+  const ant = new Ant({
+    interval,
+    trailLength,
+  })
+
+  for (let i = 0; i !== 100; i += 1) {
+    ant.update()
+  }
+  expect(ant.pheromones.getPheromones().length).toEqual(trailLength)
 })

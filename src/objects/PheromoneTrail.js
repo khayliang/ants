@@ -2,11 +2,11 @@ import Pheromone from './Pheromone'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["addChild", "removeChild"] }] */
 export default class {
-  constructor(addChild, removeChild, lifetime) {
+  constructor({ addChild = () => {}, removeChild = () => {}, lifetime } = {}) {
     this.pheromones = []
     this.lifetime = lifetime || 1
-    if (addChild) this.addChild = addChild
-    if (removeChild) this.removeChild = removeChild
+    this.addChild = addChild
+    this.removeChild = removeChild
   }
 
   addChild() {}
