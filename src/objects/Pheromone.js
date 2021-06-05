@@ -4,7 +4,7 @@ import PheremoneGraphic from './PheremoneGraphic'
 export default class extends GameObject {
   constructor(coords = { x: 0, y: 0 }) {
     super(new PheremoneGraphic())
-    this.lifetime = 100
+    this.lifetime = 1
     this.age = 0
     this.setCoords(coords)
   }
