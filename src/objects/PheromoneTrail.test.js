@@ -35,7 +35,7 @@ test('When pheromone trail updates, pheremones are updated too', () => {
   pheromone.update = pheromoneUpdateMock
   trail.add(pheromone)
   const updates = 5
-  for (let i = 0; i != updates; i += 1){
+  for (let i = 0; i != updates; i += 1) {
     trail.update()
   }
   expect(pheromoneUpdateMock.mock.calls.length).toBe(updates)
@@ -43,7 +43,7 @@ test('When pheromone trail updates, pheremones are updated too', () => {
 
 test('When pheromone in trail expires, pheremone is unmounted from app', () => {
   const removeChildMock = jest.fn()
-  const trail = new PheromoneTrail(()=>{}, removeChildMock)
+  const trail = new PheromoneTrail(() => {}, removeChildMock)
 
   const coords = { x: 5, y: 5 }
   const lifetime = 5
@@ -52,10 +52,9 @@ test('When pheromone in trail expires, pheremone is unmounted from app', () => {
   pheromone.setLifetime(lifetime)
   trail.add(pheromone)
 
-  for (let i = 0; i != lifetime+1; i += 1){
+  for (let i = 0; i != lifetime + 1; i += 1) {
     trail.update()
   }
   expect(removeChildMock.mock.calls.length).toBe(1)
   expect(trail.getPheromones().length).toBe(0)
 })
-

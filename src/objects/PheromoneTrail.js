@@ -4,10 +4,10 @@ export default class {
     this.pheromones = []
     if (addChild) this.addChild = addChild
     if (removeChild) this.removeChild = removeChild
-
   }
 
   addChild() {}
+
   removeChild() {}
 
   add(pheromone) {
@@ -19,7 +19,7 @@ export default class {
     return this.pheromones
   }
 
-  update(){
+  update() {
     this.pheromones = this.pheromones.reduce((allPheromones, pheromone) => {
       pheromone.update()
       if (!pheromone.isExpired()) {

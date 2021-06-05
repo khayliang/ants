@@ -1,6 +1,7 @@
 import Ant from './Ant'
 import AntGraphic from './AntGraphic'
 import PheromoneTrail from './PheromoneTrail'
+
 jest.mock('./PheromoneTrail')
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
