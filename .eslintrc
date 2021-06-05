@@ -8,8 +8,7 @@
     "airbnb-base"
 	],
   "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 2015
+    "sourceType": "module"
   },
 	"plugins": [
 		"prettier",
@@ -31,6 +30,7 @@
 				"allow": ["warn", "error", "debug"]
 			}
 		],
+		"object-curly-newline": 0,
 		"no-unused-expressions": ["warn", { "allowShortCircuit": true, "allowTernary": true }],
 		"no-underscore-dangle": 0,
 		"no-param-reassign": 0,

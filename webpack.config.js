@@ -1,5 +1,5 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -17,7 +17,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './dist',
-    inline: true
+    inline: true,
   },
   module: {
     rules: [
@@ -29,6 +29,6 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
-    ]
-  }
-};
+    ],
+  },
+}
