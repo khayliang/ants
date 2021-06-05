@@ -1,7 +1,10 @@
+import Pheromone from './Pheromone'
+
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["addChild", "removeChild"] }] */
 export default class {
-  constructor(addChild, removeChild) {
+  constructor(addChild, removeChild, lifetime) {
     this.pheromones = []
+    this.lifetime = lifetime || 1
     if (addChild) this.addChild = addChild
     if (removeChild) this.removeChild = removeChild
   }
@@ -10,7 +13,9 @@ export default class {
 
   removeChild() {}
 
-  add(pheromone) {
+  add(coords) {
+    const pheromone = new Pheromone(coords)
+    pheromone.setLifetime(this.lifetime)
     this.pheromones.push(pheromone)
     this.addChild(pheromone.getGraphic())
   }

@@ -8,7 +8,7 @@ export default class extends GameObject {
   constructor(addChild, removeChild) {
     super(new AntGraphic())
     this.speed = 1
-    this.pheromones = new PheromoneTrail(addChild, removeChild)
+    this.pheromones = new PheromoneTrail(addChild, removeChild, 100)
     this.pheromoneInterval = 10
     this.updateAmt = 0
   }
@@ -26,9 +26,7 @@ export default class extends GameObject {
   }
 
   sprayPheromone() {
-    const pheromone = new Pheromone(this.getCoords())
-    pheromone.setLifetime(this.pheromoneInterval * 10)
-    this.pheromones.add(pheromone)
+    this.pheromones.add(this.getCoords())
   }
 
   update() {
