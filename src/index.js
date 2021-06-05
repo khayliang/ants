@@ -5,6 +5,7 @@ import Ant from './objects/Ant'
 
 import './index.css'
 import Nest from './objects/Nest'
+import OccupancyGrid from './occupancy/OccupancyGrid'
 
 const ants = 1
 
@@ -14,6 +15,14 @@ const app = new Application({
 })
 app.stage.sortableChildren = true
 const map = new Map(app)
+const grid = new OccupancyGrid({
+  width: window.innerWidth,
+  height: window.innerHeight,
+  tileSize: 50,
+})
+grid.getTiles().forEach((tile) => {
+  app.stage.addChild(tile.getGraphic())
+})
 
 const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
@@ -31,7 +40,6 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   nest.addAnt(ant)
-
   map.addObject(ant)
 }
 
