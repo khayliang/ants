@@ -20,10 +20,10 @@ nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 map.addObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
-  const ant = new Ant(
-    (obj) => app.stage.addChild(obj),
-    (obj) => app.stage.removeChild(obj),
-  )
+  const ant = new Ant({
+    addChild: (obj) => app.stage.addChild(obj),
+    removeChild: (obj) => app.stage.removeChild(obj),
+  })
   ant.setRadians(Math.random() * Math.PI * 2)
   ant.setRandomizer(() => Math.random() - 0.5)
   nest.addAnt(ant)

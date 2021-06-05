@@ -17,20 +17,24 @@ test('When ant update ant must move', () => {
 })
 
 test('Ant can move in different radians', () => {
-  const ant = new Ant()
-  const ant1 = new Ant()
-  ant.setRadians(2)
-  ant1.setRadians(1)
+  const ant = new Ant({
+    radians: 2
+  })
+  const ant1 = new Ant({
+    radians: 1
+  })
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
 })
 
 test('Ant movement can be random', () => {
-  const ant = new Ant()
-  const ant1 = new Ant()
-  ant.setRandomizer(() => Math.random())
-  ant1.setRandomizer(() => Math.random())
+  const ant = new Ant({
+    getRandomValue: () => Math.random()
+  })
+  const ant1 = new Ant({
+    getRandomValue: () => Math.random()
+  })
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
@@ -56,14 +60,16 @@ test('Ant updates pheromone trail', () => {
 })
 
 test('Ant updates pheromone trail every interval', () => {
-  const ant = new Ant()
   const interval = 5
-  const expectedSprayedAmt = 5
-  const updateAmt = interval * expectedSprayedAmt
 
-  ant.setPheromoneInterval(interval)
+  const ant = new Ant({
+    interval
+  })
   const sprayPheromoneMock = jest.fn()
   ant.sprayPheromone = sprayPheromoneMock
+
+  const expectedSprayedAmt = 5
+  const updateAmt = interval * expectedSprayedAmt
   for (let i = 0; i !== updateAmt; i += 1) {
     ant.update()
   }
