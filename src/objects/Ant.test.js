@@ -39,7 +39,7 @@ test('Ant movement can be random', () => {
 test('Ant can lay down a pheromone trail', () => {
   const ant = new Ant()
   const trailAmt = 10
-  for (let i = 0; i != trailAmt; i += 1) {
+  for (let i = 0; i !== trailAmt; i += 1) {
     ant.sprayPheromone()
   }
   expect(ant.pheromones.getPheromones().length).toEqual(trailAmt)

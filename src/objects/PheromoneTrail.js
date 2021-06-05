@@ -1,6 +1,5 @@
-import PheremoneGraphic from './PheremoneGraphic'
 import Pheromone from './Pheromone'
-
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["addChild", "removeChild"] }] */
 export default class {
   constructor(addChild) {
     this.pheromones = []

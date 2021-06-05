@@ -2,6 +2,7 @@ import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 import PheromoneTrail from './PheromoneTrail'
 
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
   constructor() {
     super(new AntGraphic())

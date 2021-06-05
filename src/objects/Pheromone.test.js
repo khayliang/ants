@@ -10,7 +10,7 @@ test('Pheromone can expire after a number of updates', () => {
   const pheromone = new Pheromone()
   const lifetime = 5
   pheromone.setLifetime(lifetime)
-  for (let i = 0; i != lifetime - 1; i += 1) {
+  for (let i = 0; i !== lifetime - 1; i += 1) {
     expect(pheromone.update().isExpired()).toEqual(false)
   }
   expect(pheromone.update().isExpired()).toEqual(true)
