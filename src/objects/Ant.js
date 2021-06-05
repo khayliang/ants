@@ -1,5 +1,6 @@
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
+import Pheromone from './Pheromone'
 import PheromoneTrail from './PheromoneTrail'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
@@ -19,7 +20,9 @@ export default class extends GameObject {
   }
 
   sprayPheromone() {
-    this.pheromones.add(this.getCoords())
+    const pheromone = new Pheromone()
+    pheromone.setCoords(this.getCoords())
+    this.pheromones.add(pheromone)
   }
 
   update() {
