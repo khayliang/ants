@@ -3,19 +3,38 @@ export default (coords, mapSize) => {
   const { x, y } = coords
   const { width, height } = mapSize
 
-  if (x >= width) {
-    return { x: 0, y: height - y }
+  let newCoords = { x, y }
+
+  // corner cases
+
+  // top right
+  if (newCoords.x > width && newCoords.y < 0) {   
+    return { x: newCoords.x - width, y: height + newCoords.y }
+  } //top left
+  else if (newCoords.x < 0 && newCoords.y < 0) {
+    return {x: width + newCoords.x, y: height + newCoords.y }
+  } // bottom right
+  else if (newCoords.x > width && newCoords.y > height) {
+    return {x: newCoords.x - width, y: newCoords.y - height }
+  } // bottom left
+  else if (newCoords.x < 0 && newCoords.y > height) {
+    return {x: width + newCoords.x, y: newCoords.y - height }
+  }  
+
+  // edge cases
+  if (newCoords.x >= width) {
+    newCoords = { x: 0, y: height - newCoords.y }
   }
-  if (x < 0) {
-    return { x: width - 1, y: height - y }
+  else if (newCoords.x < 0) {
+    newCoords = { x: width - 1, y: height - newCoords.y }
   }
 
-  if (y >= height) {
-    return { x: width - x, y: 0 }
+  if (newCoords.y >= height) {
+    newCoords = { x: width - newCoords.x, y: 0 }
   }
-  if (y < 0) {
-    return { x: width - x, y: height - 1 }
+  else if (newCoords.y < 0) {
+    newCoords = { x: width - newCoords.x, y: height - 1 }
   }
 
-  return coords
+  return newCoords
 }
