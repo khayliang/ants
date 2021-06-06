@@ -36,6 +36,7 @@
 		"no-param-reassign": 0,
 		"linebreak-style": ["warn", "unix"],
 		"consistent-return": 0,
+		"operator-linebreak": [2, "after"],
 		"prettier/prettier": [
 			"warn",
 			{

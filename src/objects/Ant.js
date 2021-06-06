@@ -1,4 +1,3 @@
-import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 import PheromoneTrail from './PheromoneTrail'
