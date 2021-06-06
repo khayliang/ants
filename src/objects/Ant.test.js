@@ -15,10 +15,10 @@ test('When ant update ant must move', () => {
 
 test('Ant can move in different radians', () => {
   const ant = new Ant({
-    radians: 2,
+    initialRadians: 2,
   })
   const ant1 = new Ant({
-    radians: 1,
+    initialRadians: 1,
   })
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())

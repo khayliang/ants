@@ -7,7 +7,7 @@ export default class extends GameObject {
     getRandomValue = () => 0,
     defaultTrail = null,
     eye = null,
-    radians = 0,
+    initialRadians = 0,
     interval = 10,
     viewDistance = 10,
     speed = 1,
@@ -16,7 +16,7 @@ export default class extends GameObject {
 
     this.eye = eye
 
-    this.setRadians(radians)
+    this.setRadians(initialRadians)
 
     this.getRandomValue = getRandomValue
     this.speed = speed

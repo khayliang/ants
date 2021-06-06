@@ -56,7 +56,7 @@ for (let i = 0; i !== ants; i += 1) {
 
   const ant = new Ant({
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
-    radians: Math.random() * Math.PI * 2,
+    initialRadians: Math.random() * Math.PI * 2,
     defaultTrail,
     speed: 1,
     interval,
