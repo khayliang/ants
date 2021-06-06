@@ -26,9 +26,7 @@ export default (coords, mapSize) => {
     newCoords = { x: 0, y: height - newCoords.y }
   } else if (newCoords.x < 0) {
     newCoords = { x: width - 1, y: height - newCoords.y }
-  }
-
-  if (newCoords.y >= height) {
+  } else if (newCoords.y >= height) {
     newCoords = { x: width - newCoords.x, y: 0 }
   } else if (newCoords.y < 0) {
     newCoords = { x: width - newCoords.x, y: height - 1 }

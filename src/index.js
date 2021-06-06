@@ -34,7 +34,6 @@ map.addObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant({
-    mapSize: app.screen,
     addChild: (obj) => app.stage.addChild(obj),
     removeChild: (obj) => app.stage.removeChild(obj),
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
