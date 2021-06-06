@@ -1,13 +1,13 @@
 import { Graphics } from 'pixi.js'
 import GameObject from '../objects/GameObject'
-import OccupancyGrid from './OccupancyGrid'
+import PartitionGrid from './PartitionGrid'
 import Tile from './Tile'
 
 test('All tiles from grid can be gotten as array', () => {
   const tileSize = 10
   const width = 55
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,
@@ -24,7 +24,7 @@ test('Object can be added to grid', () => {
   const tileSize = 50
   const width = 50
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,
@@ -42,7 +42,7 @@ test('Object added to grid can be gotten by coords', () => {
   const tileSize = 10
   const width = 50
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,
@@ -59,7 +59,7 @@ test('Multiple coords can be given to grid', () => {
   const tileSize = 10
   const width = 50
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,
@@ -83,7 +83,7 @@ test('Object can be removed from the grid', () => {
   const tileSize = 10
   const width = 50
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,
@@ -103,7 +103,7 @@ test('Occupancy grid can update tiles', () => {
   const tileSize = 50
   const width = 50
   const height = 50
-  const grid = new OccupancyGrid({
+  const grid = new PartitionGrid({
     width,
     height,
     tileSize,

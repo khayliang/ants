@@ -1,6 +1,8 @@
 import Pheromone from './Pheromone'
 
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["addPheromone", "removePheromone"] }] */
+/* eslint class-methods-use-this: [
+  "error", { "exceptMethods": ["addPheromone", "removePheromone"] }
+] */
 export default class {
   constructor({ addPheromone = () => {}, removePheromone = () => {}, lifetime } = {}) {
     this.pheromones = []

@@ -1,6 +1,4 @@
 import Map from './Map'
-import AntGraphic from './objects/AntGraphic'
-import GameObject from './objects/GameObject'
 
 const { Application } = jest.createMockFromModule('pixi.js')
 

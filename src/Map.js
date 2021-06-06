@@ -1,5 +1,3 @@
-import getCoordsWithinMap from './utils/getCoordsWithinMap'
-
 class Map {
   constructor(app) {
     this.app = app

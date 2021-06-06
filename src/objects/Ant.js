@@ -1,4 +1,3 @@
-import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import AntGraphic from './AntGraphic'
 import Eye from './Eye'
 import GameObject from './GameObject'
