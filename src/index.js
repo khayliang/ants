@@ -7,14 +7,14 @@ import './index.css'
 import Nest from './objects/Nest'
 import PartitionGrid from './partition/PartitionGrid'
 
-const ants = 1
+const ants = 10
 
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
 })
 app.stage.sortableChildren = true
-app.ticker.maxFPS = 30
+app.ticker.maxFPS = 60
 const map = new Map(app)
 const grid = new PartitionGrid({
   width: window.innerWidth,
@@ -48,8 +48,8 @@ for (let i = 0; i !== ants; i += 1) {
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
     getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
     radians: Math.random() * Math.PI * 2,
-    speed: 2,
-    interval: 10,
+    speed: 15,
+    interval: 2,
     trailLength: 50,
     viewDistance: 30,
     fov: Math.PI / 6,
