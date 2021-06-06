@@ -9,7 +9,6 @@ export default class extends GameObject {
     eye = null,
     initialRadians = 0,
     interval = 10,
-    viewDistance = 10,
     speed = 1,
   } = {}) {
     super(new AntGraphic())
@@ -21,7 +20,6 @@ export default class extends GameObject {
     this.getRandomValue = getRandomValue
     this.speed = speed
     this.pheromoneInterval = interval
-    this.viewDistance = viewDistance
     this.defaultTrail = defaultTrail
 
     this.updateAmt = 0
@@ -46,7 +44,7 @@ export default class extends GameObject {
 
   update() {
     const coords = this.getCoords()
-    if (this.eye) this.eye.getNearbyObjects()
+  
     this.setRadians(this.getRadians() + this.getRandomValue())
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
