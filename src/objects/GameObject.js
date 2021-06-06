@@ -1,6 +1,7 @@
 export default class {
   constructor(graphic) {
     this.graphic = graphic
+    this.originalTint = graphic.tint
     this.rad = this.graphic.rotation
   }
 
@@ -25,6 +26,10 @@ export default class {
 
   setTint(hex) {
     this.graphic.tint = hex
+  }
+
+  resetTint() {
+    this.graphic.tint = this.originalTint
   }
 
   getCoords() {

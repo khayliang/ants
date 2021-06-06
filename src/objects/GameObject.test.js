@@ -43,3 +43,14 @@ test('GameObject can set a tint', () => {
   obj.setTint(tint)
   expect(graphic.tint).toEqual(tint)
 })
+
+test('GameObject can reset tint', () => {
+  const graphic = new Graphics()
+  const originalTint = graphic.tint
+  const obj = new GameObject(graphic)
+  const tint = 0x123456
+  obj.setTint(tint)
+  expect(graphic.tint).toEqual(tint)
+  obj.resetTint()
+  expect(graphic.tint).toEqual(originalTint)
+})
