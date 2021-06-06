@@ -13,5 +13,11 @@ export default class extends Graphics {
       .lineTo(x, y + height)
       .lineTo(x, y)
       .alpha = 0.5
+      
+    this.zIndex = -2
+  }
+
+  setTint(hex){
+    this.tint = hex
   }
 }
