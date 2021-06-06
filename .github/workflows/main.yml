@@ -18,6 +18,9 @@ jobs:
       run: |
         npm i
         npm run build
+    - name: run tests
+      run: |
+        npm test
     - name: Deploy
       uses: s0/git-publish-subdir-action@develop
       env:
