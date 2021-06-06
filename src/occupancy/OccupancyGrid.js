@@ -47,6 +47,6 @@ export default class {
   }
 
   update() {
-    this.getTiles().forEach(tile => tile.update())
+    this.getTiles().forEach((tile) => tile.update())
   }
 }

@@ -38,5 +38,4 @@ test('When tile is updates after being queried, tint color is resetted', () => {
   expect(graphic.tint).toEqual(tint)
   tile.update()
   expect(graphic.tint).toEqual(originalTint)
-
 })

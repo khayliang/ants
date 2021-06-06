@@ -55,7 +55,6 @@ test('Object added to grid can be gotten by coords', () => {
   expect(objs[0]).toBe(obj)
 })
 
-
 test('Object can be removed from the grid', () => {
   const tileSize = 10
   const width = 50
@@ -87,7 +86,7 @@ test('Occupancy grid can update tiles', () => {
   })
   const tiles = grid.getTiles()
   const mockUpdate = jest.fn()
-  tiles.forEach(tile => {
+  tiles.forEach((tile) => {
     tile.update = mockUpdate
   })
   grid.update()
