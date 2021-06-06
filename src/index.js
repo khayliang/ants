@@ -7,7 +7,7 @@ import './index.css'
 import Nest from './objects/Nest'
 import OccupancyGrid from './occupancy/OccupancyGrid'
 
-const ants = 10
+const ants = 100
 
 const app = new Application({
   width: window.innerWidth,
@@ -32,18 +32,27 @@ const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 map.addObject(nest)
 
+const addPheromone = (pheromone) => {
+  app.stage.addChild(pheromone.getGraphic())
+  grid.addObject(pheromone)
+}
+const removePheromone = (pheromone) => {
+  app.stage.removeChild(pheromone.getGraphic())
+  grid.removeObject(pheromone)
+}
+
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant({
-    addChild: (obj) => app.stage.addChild(obj),
-    removeChild: (obj) => app.stage.removeChild(obj),
+    addPheromone,
+    removePheromone,
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
     getObjectsAtCoords: (coords) => grid.getObjectsInCoords(coords),
-    radians: -2,//Math.random() * Math.PI * 2,
+    radians: -2, // Math.random() * Math.PI * 2,
     speed: 1,
     interval: 20,
     trailLength: 10,
     viewDistance: 30,
-    fov: Math.PI/6
+    fov: Math.PI / 6,
   })
 
   nest.addAnt(ant)

@@ -11,7 +11,6 @@ export default class extends GameObject {
     removePheromone = () => {},
     getRandomValue = () => 0,
     getObjectsAtCoords = () => [],
-    mapSize = {width: window.innerWidth, height: window.innerHeight},
     radians = 0,
     interval = 10,
     viewDistance = 10,
@@ -34,7 +33,6 @@ export default class extends GameObject {
     this.speed = speed
     this.pheromoneInterval = interval
     this.viewDistance = viewDistance
-    this.mapSize = mapSize
 
     this.updateAmt = 0
   }
@@ -59,10 +57,10 @@ export default class extends GameObject {
     const coords = this.getCoords()
     this.eye.getNearbyObjects()
     this.setRadians(this.getRadians() + this.getRandomValue())
-    const newCoords = getCoordsWithinMap({
+    const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
       y: coords.y + this.speed * Math.sin(this.getRadians()),
-    }, this.mapSize)
+    }
     this.setCoords(newCoords)
 
     if (this.updateAmt % this.pheromoneInterval === 0) {

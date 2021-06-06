@@ -10,8 +10,8 @@ export default (coords, mapSize) => {
     newCoords = { x: newCoords.x - width, y: newCoords.y }
   } else if (newCoords.x < 0) {
     newCoords = { x: newCoords.x + width, y: newCoords.y }
-  } 
-  
+  }
+
   if (newCoords.y >= height) {
     newCoords = { x: newCoords.x, y: newCoords.y - height }
   } else if (newCoords.y < 0) {

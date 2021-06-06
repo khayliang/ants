@@ -19,9 +19,9 @@ test('Pheromone can be added to pheromone trail', () => {
 test('Pheromone are displayed on the map at coord', () => {
   const PheromoneTrail = require('./PheromoneTrail').default
 
-  const addObjectMock = jest.fn()
+  const addPheromoneMock = jest.fn()
   const trail = new PheromoneTrail({
-    addObject: addObjectMock,
+    addPheromone: addPheromoneMock,
   })
   const coords = { x: 5, y: 5 }
   trail.add(coords)
@@ -49,10 +49,10 @@ test('When pheromone in trail expires, pheremone is unmounted from app', () => {
 
   const lifetime = 5
 
-  const removeObjectMock = jest.fn()
+  const removePheromoneMock = jest.fn()
 
   const trail = new PheromoneTrail({
-    removeObject: removeObjectMock,
+    removePheromone: removePheromoneMock,
     lifetime,
   })
 
@@ -62,6 +62,6 @@ test('When pheromone in trail expires, pheremone is unmounted from app', () => {
   for (let i = 0; i !== lifetime + 1; i += 1) {
     trail.update()
   }
-  expect(removeObjectMock).toHaveBeenCalled()
+  expect(removePheromoneMock).toHaveBeenCalled()
   expect(trail.getPheromones().length).toBe(0)
 })

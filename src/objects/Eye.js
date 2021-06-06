@@ -21,15 +21,15 @@ export default class Eye {
       ...this.getObjectsAtCoords({
         x: currCoords.x + this.viewDistance * Math.cos(currRad),
         y: currCoords.y + this.viewDistance * Math.sin(currRad),
-      }), 
+      }),
       ...this.getObjectsAtCoords({
         x: currCoords.x + this.viewDistance * Math.cos(currRad + this.fov),
         y: currCoords.y + this.viewDistance * Math.sin(currRad + this.fov),
-      }), 
+      }),
       ...this.getObjectsAtCoords({
         x: currCoords.x + this.viewDistance * Math.cos(currRad - this.fov),
         y: currCoords.y + this.viewDistance * Math.sin(currRad - this.fov),
-      })
+      }),
     ]
   }
 }
