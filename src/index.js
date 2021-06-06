@@ -1,6 +1,5 @@
 import { Application } from 'pixi.js'
 
-import Map from './Map'
 import Ant from './objects/Ant'
 
 import './index.css'
@@ -15,7 +14,7 @@ const app = new Application({
 })
 app.stage.sortableChildren = true
 app.ticker.maxFPS = 60
-const map = new Map(app)
+
 const grid = new PartitionGrid({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -30,7 +29,7 @@ app.ticker.add(() => grid.update())
 
 const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
-map.addObject(nest)
+app.stage.addChild(nest.getGraphic())
 
 const addPheromone = (pheromone) => {
   app.stage.addChild(pheromone.getGraphic())
@@ -56,9 +55,8 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   nest.addAnt(ant)
-  map.addObject(ant)
+  app.stage.addChild(ant.getGraphic())
+  app.ticker.add(() => ant.update())
 }
-
-map.start()
 
 document.body.appendChild(app.view)
