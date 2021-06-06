@@ -5,8 +5,9 @@ import Ant from './objects/Ant'
 import './index.css'
 import Nest from './objects/Nest'
 import PartitionGrid from './partition/PartitionGrid'
+import Food from './objects/Food'
 
-const ants = 10
+const ants = 0
 
 const app = new Application({
   width: window.innerWidth,
@@ -31,6 +32,11 @@ const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 app.stage.addChild(nest.getGraphic())
 
+const food = new Food()
+food.setCoords({x: 10, y: 10})
+app.stage.addChild(food.getGraphic())
+
+
 const addPheromone = (pheromone) => {
   app.stage.addChild(pheromone.getGraphic())
   grid.addObject(pheromone)
@@ -53,7 +59,6 @@ for (let i = 0; i !== ants; i += 1) {
     viewDistance: 30,
     fov: Math.PI / 6,
   })
-
   nest.addAnt(ant)
   app.stage.addChild(ant.getGraphic())
   app.ticker.add(() => ant.update())
