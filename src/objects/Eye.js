@@ -16,20 +16,20 @@ export default class Eye {
   getNearbyObjects() {
     const currCoords = this.object.getCoords()
     const currRad = this.object.getRadians()
-    return [
-      ...this.getObjectsAtCoords(currCoords),
-      ...this.getObjectsAtCoords({
+    return this.getObjectsAtCoords([
+      currCoords,
+      {
         x: currCoords.x + this.viewDistance * Math.cos(currRad),
         y: currCoords.y + this.viewDistance * Math.sin(currRad),
-      }),
-      ...this.getObjectsAtCoords({
+      },
+      {
         x: currCoords.x + this.viewDistance * Math.cos(currRad + this.fov),
         y: currCoords.y + this.viewDistance * Math.sin(currRad + this.fov),
-      }),
-      ...this.getObjectsAtCoords({
+      },
+      {
         x: currCoords.x + this.viewDistance * Math.cos(currRad - this.fov),
         y: currCoords.y + this.viewDistance * Math.sin(currRad - this.fov),
-      }),
-    ]
+      },
+    ])
   }
 }

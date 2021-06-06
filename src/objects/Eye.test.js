@@ -36,8 +36,8 @@ test("Eye can get objects from tiles near it's own object", () => {
     y: currCoords.y + viewDistance * Math.sin(rad + fov),
   }
 
-  const flattenedCalls = getObjectsMock.mock.calls.flat()
-  flattenedCalls.forEach((coord) => {
+  const calls = getObjectsMock.mock.calls[0][0]
+  calls.forEach((coord) => {
     let match = false
     if (
       isEqual(coord, peekedCoordsLeft) ||
