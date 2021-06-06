@@ -6,8 +6,8 @@ import PheromoneTrail from './PheromoneTrail'
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
   constructor({
-    addChild = () => {},
-    removeChild = () => {},
+    addObject = () => {},
+    removeObject = () => {},
     getRandomValue = () => 0,
     getObjectsAtCoords = () => [],
     radians = 0,
@@ -20,8 +20,8 @@ export default class extends GameObject {
     super(new AntGraphic())
 
     this.pheromones = new PheromoneTrail({
-      addChild,
-      removeChild,
+      addObject,
+      removeObject,
       lifetime: trailLength * interval,
     })
     this.eye = new Eye({ object: this, getObjectsAtCoords, viewDistance, fov })

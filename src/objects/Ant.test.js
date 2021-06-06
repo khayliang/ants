@@ -108,25 +108,3 @@ test('Ant can specify length of pheromone trail', () => {
   }
   expect(ant.pheromones.getPheromones().length).toEqual(trailLength)
 })
-
-test('Ant can get objects infront of it', () => {
-  const Ant = require('./Ant').default
-  const getObjectsMock = jest.fn()
-
-  const rad = 2
-  const viewDist = 10
-  const ant = new Ant({
-    viewDistance: viewDist,
-    getObjectAtCoords: getObjectsMock,
-  })
-  const currCoords = { x: 0, y: 0 }
-  ant.setCoords(currCoords)
-  ant.setRadians(rad)
-  const peekedCoords = {
-    x: currCoords.x + viewDist * Math.cos(rad),
-    y: currCoords.y + viewDist * Math.sin(rad),
-  }
-  ant.peekInfront()
-  const calledObj = getObjectsMock.mock.calls[0][0]
-  expect(calledObj).toMatchObject(peekedCoords)
-})

@@ -7,19 +7,19 @@ import './index.css'
 import Nest from './objects/Nest'
 import OccupancyGrid from './occupancy/OccupancyGrid'
 
-const ants = 1
+const ants = 10
 
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
 })
 app.stage.sortableChildren = true
-app.ticker.maxFPS = 20
+app.ticker.maxFPS = 60
 const map = new Map(app)
 const grid = new OccupancyGrid({
   width: window.innerWidth,
   height: window.innerHeight,
-  tileSize: 40,
+  tileSize: 100,
 })
 grid.getTiles().forEach((tile) => {
   app.stage.addChild(tile.getGraphic())
@@ -38,12 +38,12 @@ for (let i = 0; i !== ants; i += 1) {
     removeChild: (obj) => app.stage.removeChild(obj),
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
     getObjectsAtCoords: (coords) => grid.getObjectsInCoords(coords),
-    radians: Math.random() * Math.PI * 2,
+    radians: -2,//Math.random() * Math.PI * 2,
     speed: 1,
     interval: 20,
     trailLength: 10,
-    viewDistance: 20,
-    fov: Math.PI/2
+    viewDistance: 30,
+    fov: Math.PI/6
   })
 
   nest.addAnt(ant)

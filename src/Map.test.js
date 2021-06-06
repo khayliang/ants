@@ -69,48 +69,5 @@ test('Map teleports object to other side if out of bounds', () => {
   obj.setCoords(coords)
   map.update()
 
-  let expectedCoords = {
-    x: 0,
-    y: bounds.height - coords.y,
-  }
-  expect(obj.getCoords()).toMatchObject(expectedCoords)
-
-  coords = {
-    x: -1,
-    y: 25,
-  }
-  obj.setCoords(coords)
-  map.update()
-
-  expectedCoords = {
-    x: bounds.width - 1,
-    y: bounds.height - coords.y,
-  }
-  expect(obj.getCoords()).toMatchObject(expectedCoords)
-
-  coords = {
-    x: 25,
-    y: -1,
-  }
-  obj.setCoords(coords)
-  map.update()
-
-  expectedCoords = {
-    x: bounds.width - coords.x,
-    y: bounds.height - 1,
-  }
-  expect(obj.getCoords()).toMatchObject(expectedCoords)
-
-  coords = {
-    x: 45,
-    y: 100,
-  }
-  obj.setCoords(coords)
-  map.update()
-
-  expectedCoords = {
-    x: bounds.width - coords.x,
-    y: 0,
-  }
-  expect(obj.getCoords()).toMatchObject(expectedCoords)
+  expect(obj.getCoords()).not.toMatchObject(coords)
 })
