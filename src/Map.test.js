@@ -44,5 +44,5 @@ test('when start map, objects in the map with update method and map update are a
   const map = new Map(app)
   mockObjects.forEach((obj) => map.addObject(obj))
   map.start()
-  expect(addMock.mock.calls.length).toBe(objNo + 1)
+  expect(addMock.mock.calls.length).toBe(objNo)
 })
