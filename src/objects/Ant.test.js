@@ -117,14 +117,14 @@ test('Ant can get objects infront of it', () => {
   const viewDist = 10
   const ant = new Ant({
     viewDistance: viewDist,
-    getObjectAtCoords: getObjectsMock
+    getObjectAtCoords: getObjectsMock,
   })
-  const currCoords = {x: 0, y: 0}
+  const currCoords = { x: 0, y: 0 }
   ant.setCoords(currCoords)
   ant.setRadians(rad)
   const peekedCoords = {
     x: currCoords.x + viewDist * Math.cos(rad),
-    y: currCoords.y + viewDist * Math.sin(rad)
+    y: currCoords.y + viewDist * Math.sin(rad),
   }
   ant.peekInfront()
   const calledObj = getObjectsMock.mock.calls[0][0]

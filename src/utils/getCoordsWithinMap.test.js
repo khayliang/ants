@@ -1,6 +1,6 @@
-import getCoordsWithinMap from "./getCoordsWithinMap"
+import getCoordsWithinMap from './getCoordsWithinMap'
 
-test("Function returns coords within map if coords exceed map size", () => {
+test('Function returns coords within map if coords exceed map size', () => {
   const bounds = {
     width: 60,
     height: 60,
@@ -35,7 +35,6 @@ test("Function returns coords within map if coords exceed map size", () => {
   }
   newCoords = getCoordsWithinMap(coords, bounds)
 
-
   expectedCoords = {
     x: bounds.width - coords.x,
     y: bounds.height - 1,
@@ -47,7 +46,6 @@ test("Function returns coords within map if coords exceed map size", () => {
     y: 100,
   }
   newCoords = getCoordsWithinMap(coords, bounds)
-
 
   expectedCoords = {
     x: bounds.width - coords.x,

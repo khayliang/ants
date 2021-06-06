@@ -50,12 +50,12 @@ export default class extends GameObject {
     return []
   }
 
-  peekInfront(){
+  peekInfront() {
     const coords = this.getCoords()
     const rad = this.getRadians()
     const coordsToPeek = {
       x: coords.x + this.viewDistance * Math.cos(rad),
-      y: coords.y + this.viewDistance * Math.sin(rad)
+      y: coords.y + this.viewDistance * Math.sin(rad),
     }
     return this.getObjectAtCoords(coordsToPeek)
   }

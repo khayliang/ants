@@ -1,4 +1,4 @@
-import getCoordsWithinMap from "./utils/getCoordsWithinMap"
+import getCoordsWithinMap from './utils/getCoordsWithinMap'
 
 class Map {
   constructor(app) {
