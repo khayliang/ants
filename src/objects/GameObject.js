@@ -23,6 +23,10 @@ export default class {
     return this.rad
   }
 
+  setTint(hex) {
+    this.graphic.tint = hex
+  }
+
   getCoords() {
     return {
       x: this.graphic.x,

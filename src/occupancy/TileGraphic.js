@@ -15,8 +15,4 @@ export default class extends Graphics {
 
     this.zIndex = -2
   }
-
-  setTint(hex) {
-    this.tint = hex
-  }
 }

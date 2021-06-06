@@ -35,3 +35,11 @@ test('When setting radians, use graphics setRadians function if present', () => 
   obj.setRadians(rad)
   expect(graphic.setRadians.mock.calls.length).toBe(1)
 })
+
+test('GameObject can set a tint', () => {
+  const graphic = new Graphics()
+  const obj = new GameObject(graphic)
+  const tint = 0x123456
+  obj.setTint(tint)
+  expect(graphic.tint).toEqual(tint)
+})
