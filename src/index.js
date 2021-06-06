@@ -6,6 +6,8 @@ import './index.css'
 import Nest from './objects/Nest'
 import PartitionGrid from './partition/PartitionGrid'
 import Food from './objects/Food'
+import Eye from './objects/Eye'
+import PheromoneTrail from './objects/PheromoneTrail'
 
 const ants = 1
 
@@ -42,18 +44,32 @@ const removeInteractableObject = (obj) => {
 }
 
 for (let i = 0; i !== ants; i += 1) {
+  const length = 0
+  const interval = 10
+  const lifetime = interval * length
+
+  const defaultTrail = new PheromoneTrail({
+    onPheromoneAdd: addInteractableObject,
+    onPheromoneExpire: removeInteractableObject,
+    lifetime,
+  })
+
   const ant = new Ant({
-    addPheromone: addInteractableObject,
-    removePheromone: removeInteractableObject,
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
-    getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
     radians: Math.random() * Math.PI * 2,
+    defaultTrail,
     speed: 1,
-    interval: 2,
-    trailLength: 0,
+    interval,
+  })
+
+  const eye = new Eye({
+    object: ant,
+    getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
     viewDistance: 30,
     fov: Math.PI / 6,
   })
+  ant.setEye(eye)
+
   nest.addAnt(ant)
   app.stage.addChild(ant.getGraphic())
   app.ticker.add(() => ant.update())
@@ -64,7 +80,7 @@ for (let i = 0; i !== foods; i += 1) {
   const food = new Food()
   food.setCoords({
     x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight
+    y: Math.random() * window.innerHeight,
   })
   addInteractableObject(food)
 }

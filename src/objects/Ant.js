@@ -1,30 +1,20 @@
 import AntGraphic from './AntGraphic'
-import Eye from './Eye'
 import GameObject from './GameObject'
-import PheromoneTrail from './PheromoneTrail'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
   constructor({
-    addPheromone = () => {},
-    removePheromone = () => {},
     getRandomValue = () => 0,
-    getObjectsAtCoords = () => [],
+    defaultTrail = null,
+    eye = null,
     radians = 0,
     interval = 10,
     viewDistance = 10,
     speed = 1,
-    trailLength = 10,
-    fov = 0.52,
   } = {}) {
     super(new AntGraphic())
 
-    this.pheromones = new PheromoneTrail({
-      addPheromone,
-      removePheromone,
-      lifetime: trailLength * interval,
-    })
-    this.eye = new Eye({ object: this, getObjectsAtCoords, viewDistance, fov })
+    this.eye = eye
 
     this.setRadians(radians)
 
@@ -32,16 +22,14 @@ export default class extends GameObject {
     this.speed = speed
     this.pheromoneInterval = interval
     this.viewDistance = viewDistance
+    this.defaultTrail = defaultTrail
 
     this.updateAmt = 0
   }
 
-  setRandomizer(randClosure) {
-    this.getRandomValue = randClosure
-  }
-
-  setPheromoneInterval(interval) {
-    this.pheromoneInterval = interval
+  setEye(eye) {
+    this.eye = eye
+    return this
   }
 
   getRandomValue() {
@@ -49,12 +37,16 @@ export default class extends GameObject {
   }
 
   sprayPheromone() {
-    this.pheromones.add(this.getCoords())
+    if (this.defaultTrail) this.defaultTrail.add(this.getCoords())
+  }
+
+  updatePheromoneTrails() {
+    if (this.defaultTrail) this.defaultTrail.update()
   }
 
   update() {
     const coords = this.getCoords()
-    this.eye.getNearbyObjects()
+    if (this.eye) this.eye.getNearbyObjects()
     this.setRadians(this.getRadians() + this.getRandomValue())
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
@@ -66,7 +58,7 @@ export default class extends GameObject {
       this.sprayPheromone()
       this.updateAmt = 0
     }
-    this.pheromones.update()
+    this.updatePheromoneTrails()
 
     this.updateAmt += 1
     return this

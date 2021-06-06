@@ -1,25 +1,26 @@
 import Pheromone from './Pheromone'
 
 /* eslint class-methods-use-this: [
-  "error", { "exceptMethods": ["addPheromone", "removePheromone"] }
+  "error", { "exceptMethods": ["onPheromoneAdd", "onPheromoneExpire"] }
 ] */
 export default class {
-  constructor({ addPheromone = () => {}, removePheromone = () => {}, lifetime } = {}) {
+  constructor({ onPheromoneAdd = () => {}, onPheromoneExpire = () => {}, lifetime } = {}) {
     this.pheromones = []
-    this.lifetime = lifetime || 1
-    this.addPheromone = addPheromone
-    this.removePheromone = removePheromone
+    this.lifetime = lifetime || 0
+    this.onPheromoneAdd = onPheromoneAdd
+    this.onPheromoneExpire = onPheromoneExpire
   }
 
-  addPheromone() {}
+  onPheromoneAdd() {}
 
-  removePheromone() {}
+  onPheromoneExpire() {}
 
   add(coords) {
+    if (this.lifetime === 0) return
     const pheromone = new Pheromone(coords)
     pheromone.setLifetime(this.lifetime)
     this.pheromones.push(pheromone)
-    this.addPheromone(pheromone)
+    this.onPheromoneAdd(pheromone)
   }
 
   getPheromones() {
@@ -28,12 +29,12 @@ export default class {
 
   update() {
     this.pheromones = this.pheromones.reduce((allPheromones, pheromone) => {
-      pheromone.update()
       if (!pheromone.isExpired()) {
+        pheromone.update()
         allPheromones.push(pheromone)
         return allPheromones
       }
-      this.removePheromone(pheromone)
+      this.onPheromoneExpire(pheromone)
       return allPheromones
     }, [])
   }
