@@ -7,7 +7,7 @@ import Nest from './objects/Nest'
 import PartitionGrid from './partition/PartitionGrid'
 import Food from './objects/Food'
 
-const ants = 0
+const ants = 1
 
 const app = new Application({
   width: window.innerWidth,
@@ -32,36 +32,41 @@ const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 app.stage.addChild(nest.getGraphic())
 
-const food = new Food()
-food.setCoords({x: 10, y: 10})
-app.stage.addChild(food.getGraphic())
-
-
-const addPheromone = (pheromone) => {
-  app.stage.addChild(pheromone.getGraphic())
-  grid.addObject(pheromone)
+const addInteractableObject = (obj) => {
+  app.stage.addChild(obj.getGraphic())
+  grid.addObject(obj)
 }
-const removePheromone = (pheromone) => {
-  app.stage.removeChild(pheromone.getGraphic())
-  grid.removeObject(pheromone)
+const removeInteractableObject = (obj) => {
+  app.stage.removeChild(obj.getGraphic())
+  grid.removeObject(obj)
 }
 
 for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant({
-    addPheromone,
-    removePheromone,
+    addPheromone: addInteractableObject,
+    removePheromone: removeInteractableObject,
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
     getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
     radians: Math.random() * Math.PI * 2,
-    speed: 15,
+    speed: 1,
     interval: 2,
-    trailLength: 50,
+    trailLength: 0,
     viewDistance: 30,
     fov: Math.PI / 6,
   })
   nest.addAnt(ant)
   app.stage.addChild(ant.getGraphic())
   app.ticker.add(() => ant.update())
+}
+
+const foods = 100
+for (let i = 0; i !== foods; i += 1) {
+  const food = new Food()
+  food.setCoords({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight
+  })
+  addInteractableObject(food)
 }
 
 document.body.appendChild(app.view)
