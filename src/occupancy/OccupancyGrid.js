@@ -42,7 +42,7 @@ export default class {
   }
 
   getObjectsInCoords(coords) {
-    const {x, y} = getCoordsWithinMap(coords, {width: this.width, height: this.height})
+    const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
     const xTile = Math.floor(x / this.tileSize)
     const yTile = Math.floor(y / this.tileSize)
     return this.tiles[yTile][xTile].getObjects()
