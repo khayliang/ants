@@ -45,4 +45,8 @@ export default class {
     const yTile = Math.floor(y / this.tileSize)
     return this.tiles[yTile][xTile].getObjects()
   }
+
+  update() {
+    this.getTiles().forEach(tile => tile.update())
+  }
 }

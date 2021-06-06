@@ -25,6 +25,9 @@ grid.getTiles().forEach((tile) => {
   app.stage.addChild(tile.getGraphic())
 })
 
+// add grid update first because it should run before anything else
+app.ticker.add(() => grid.update())
+
 const nest = new Nest()
 nest.setCoords({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
 map.addObject(nest)

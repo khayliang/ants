@@ -20,4 +20,8 @@ export default class extends GameObject {
   removeObject(obj) {
     this.objects.delete(obj)
   }
+
+  update() {
+    this.resetTint()
+  }
 }

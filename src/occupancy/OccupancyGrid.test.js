@@ -21,6 +21,24 @@ test('All tiles from grid can be gotten as array', () => {
 })
 
 test('Object can be added to grid', () => {
+  const tileSize = 50
+  const width = 50
+  const height = 50
+  const grid = new OccupancyGrid({
+    width,
+    height,
+    tileSize,
+  })
+  const coords = { x: 20, y: 20 }
+  const obj = new GameObject(new Graphics())
+  obj.setCoords(coords)
+  grid.addObject(obj)
+  const [tile] = grid.getTiles()
+  const [objInTile] = tile.getObjects()
+  expect(objInTile).toBe(obj)
+})
+
+test('Object added to grid can be gotten by coords', () => {
   const tileSize = 10
   const width = 50
   const height = 50
@@ -36,6 +54,7 @@ test('Object can be added to grid', () => {
   const objs = grid.getObjectsInCoords(coords)
   expect(objs[0]).toBe(obj)
 })
+
 
 test('Object can be removed from the grid', () => {
   const tileSize = 10
@@ -55,4 +74,22 @@ test('Object can be removed from the grid', () => {
   grid.removeObject(obj)
   const newObjs = grid.getObjectsInCoords(coords)
   expect(newObjs.length).toBe(0)
+})
+
+test('Occupancy grid can update tiles', () => {
+  const tileSize = 50
+  const width = 50
+  const height = 50
+  const grid = new OccupancyGrid({
+    width,
+    height,
+    tileSize,
+  })
+  const tiles = grid.getTiles()
+  const mockUpdate = jest.fn()
+  tiles.forEach(tile => {
+    tile.update = mockUpdate
+  })
+  grid.update()
+  expect(mockUpdate).toHaveBeenCalled()
 })

@@ -28,3 +28,15 @@ test('When tile is queried, tint color is changed', () => {
   tile.getObjects()
   expect(graphic.tint).toEqual(tint)
 })
+
+test('When tile is updates after being queried, tint color is resetted', () => {
+  const tint = 0x489362
+  const tile = new Tile({ x: 0, y: 0, width: 0, height: 0, tint })
+  const graphic = tile.getGraphic()
+  const originalTint = graphic.tint
+  tile.getObjects()
+  expect(graphic.tint).toEqual(tint)
+  tile.update()
+  expect(graphic.tint).toEqual(originalTint)
+
+})
