@@ -1,3 +1,4 @@
+import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import AntGraphic from './AntGraphic'
 import Eye from './Eye'
 import GameObject from './GameObject'
@@ -6,10 +7,11 @@ import PheromoneTrail from './PheromoneTrail'
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
   constructor({
-    addObject = () => {},
-    removeObject = () => {},
+    addPheromone = () => {},
+    removePheromone = () => {},
     getRandomValue = () => 0,
     getObjectsAtCoords = () => [],
+    mapSize = {width: window.innerWidth, height: window.innerHeight},
     radians = 0,
     interval = 10,
     viewDistance = 10,
@@ -20,8 +22,8 @@ export default class extends GameObject {
     super(new AntGraphic())
 
     this.pheromones = new PheromoneTrail({
-      addObject,
-      removeObject,
+      addPheromone,
+      removePheromone,
       lifetime: trailLength * interval,
     })
     this.eye = new Eye({ object: this, getObjectsAtCoords, viewDistance, fov })
@@ -32,6 +34,7 @@ export default class extends GameObject {
     this.speed = speed
     this.pheromoneInterval = interval
     this.viewDistance = viewDistance
+    this.mapSize = mapSize
 
     this.updateAmt = 0
   }
@@ -56,10 +59,10 @@ export default class extends GameObject {
     const coords = this.getCoords()
     this.eye.getNearbyObjects()
     this.setRadians(this.getRadians() + this.getRandomValue())
-    const newCoords = {
+    const newCoords = getCoordsWithinMap({
       x: coords.x + this.speed * Math.cos(this.getRadians()),
       y: coords.y + this.speed * Math.sin(this.getRadians()),
-    }
+    }, this.mapSize)
     this.setCoords(newCoords)
 
     if (this.updateAmt % this.pheromoneInterval === 0) {

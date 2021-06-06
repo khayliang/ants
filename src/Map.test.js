@@ -46,28 +46,3 @@ test('when start map, objects in the map with update method and map update are a
   map.start()
   expect(addMock.mock.calls.length).toBe(objNo + 1)
 })
-
-test('Map teleports object to other side if out of bounds', () => {
-  const bounds = {
-    width: 60,
-    height: 60,
-  }
-
-  const app = new Application(bounds)
-  app.stage = {
-    addChild: () => {},
-  }
-  app.screen = bounds
-  const map = new Map(app)
-
-  const obj = new GameObject(new AntGraphic())
-  map.addObject(obj)
-  let coords = {
-    x: 100,
-    y: 25,
-  }
-  obj.setCoords(coords)
-  map.update()
-
-  expect(obj.getCoords()).not.toMatchObject(coords)
-})
