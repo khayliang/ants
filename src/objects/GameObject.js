@@ -18,6 +18,7 @@ export default class {
   setRadians(rad) {
     if (this.graphic.setRadians) this.graphic.setRadians(rad)
     this.rad = rad
+    return this
   }
 
   getRadians() {
@@ -26,10 +27,12 @@ export default class {
 
   setTint(hex) {
     this.graphic.tint = hex
+    return this
   }
 
   resetTint() {
     this.graphic.tint = this.originalTint
+    return this
   }
 
   getCoords() {
