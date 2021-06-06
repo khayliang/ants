@@ -20,3 +20,11 @@ test('Objects can be removed from tile', () => {
   const newObjs = tile.getObjects()
   expect(newObjs.length).toEqual(0)
 })
+
+test('When tile is queried, tint color is changed', () => {
+  const tint = 0x489362
+  const tile = new Tile({ x: 0, y: 0, width: 0, height: 0, tint })
+  const graphic = tile.getGraphic()
+  tile.getObjects()
+  expect(graphic.tint).toEqual(tint)
+})

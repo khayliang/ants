@@ -2,9 +2,10 @@ import GameObject from '../objects/GameObject'
 import TileGraphic from './TileGraphic'
 
 export default class extends GameObject {
-  constructor(params) {
-    super(new TileGraphic(params))
+  constructor({ x, y, width, height, tint }) {
+    super(new TileGraphic({x, y, width, height}))
     this.objects = new Set()
+    this.tintColor = tint
   }
 
   addObject(obj) {
@@ -12,6 +13,7 @@ export default class extends GameObject {
   }
 
   getObjects() {
+    this.setTint(this.tintColor)
     return [...this.objects]
   }
 
