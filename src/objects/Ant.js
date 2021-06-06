@@ -66,6 +66,7 @@ export default class extends GameObject {
 
   update() {
     const coords = this.getCoords()
+    this.peekInfront()
     this.setRadians(this.getRadians() + this.getRandomValue())
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
