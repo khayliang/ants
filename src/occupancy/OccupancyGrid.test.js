@@ -55,7 +55,6 @@ test('Object added to grid can be gotten by coords', () => {
   expect(objs[0]).toBe(obj)
 })
 
-
 test('Multiple coords can be given to grid', () => {
   const tileSize = 10
   const width = 50
@@ -65,18 +64,20 @@ test('Multiple coords can be given to grid', () => {
     height,
     tileSize,
   })
-  const coordsList = [{ x: 20, y: 20 }, { x: 40, y: 40 }, { x: 10, y: 10 }]
-  coordsList.forEach(coord => {
+  const coordsList = [
+    { x: 20, y: 20 },
+    { x: 40, y: 40 },
+    { x: 10, y: 10 },
+  ]
+  coordsList.forEach((coord) => {
     const obj = new GameObject(new Graphics())
     obj.setCoords(coord)
     grid.addObject(obj)
   })
-  
+
   const objs = grid.getObjectsInMultipleCoords(coordsList)
   expect(objs.length).toBe(3)
 })
-
-
 
 test('Object can be removed from the grid', () => {
   const tileSize = 10

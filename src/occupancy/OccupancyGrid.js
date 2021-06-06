@@ -49,21 +49,19 @@ export default class {
     return this.tiles[yTile][xTile].getObjects()
   }
 
-  getObjectsInMultipleCoords(coordsList){
+  getObjectsInMultipleCoords(coordsList) {
     const tileCoordsList = coordsList.map((coords) => {
       const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
       return {
-      x: Math.floor(x / this.tileSize),
-      y: Math.floor(y / this.tileSize)
+        x: Math.floor(x / this.tileSize),
+        y: Math.floor(y / this.tileSize),
       }
     })
     const filteredCoordsList = uniqWith(tileCoordsList, isEqual)
-    return filteredCoordsList.reduce((allObjs, {x, y}) => (
-      [
-        ...allObjs,
-        ...this.tiles[y][x].getObjects()
-      ]
-    ), [])
+    return filteredCoordsList.reduce(
+      (allObjs, { x, y }) => [...allObjs, ...this.tiles[y][x].getObjects()],
+      [],
+    )
   }
 
   update() {
