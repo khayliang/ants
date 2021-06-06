@@ -3,7 +3,7 @@ import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 import PheromoneTrail from './PheromoneTrail'
 
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue", "getObjectAtCoords"] }] */
 export default class extends GameObject {
   constructor({
     mapSize,
