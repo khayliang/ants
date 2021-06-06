@@ -14,12 +14,12 @@ const app = new Application({
   height: window.innerHeight,
 })
 app.stage.sortableChildren = true
-app.ticker.maxFPS = 60
+app.ticker.maxFPS = 20
 const map = new Map(app)
 const grid = new OccupancyGrid({
   width: window.innerWidth,
   height: window.innerHeight,
-  tileSize: 80,
+  tileSize: 40,
 })
 grid.getTiles().forEach((tile) => {
   app.stage.addChild(tile.getGraphic())
@@ -37,12 +37,13 @@ for (let i = 0; i !== ants; i += 1) {
     addChild: (obj) => app.stage.addChild(obj),
     removeChild: (obj) => app.stage.removeChild(obj),
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
-    getObjectAtCoords: (coords) => grid.getObjectsInCoords(coords),
+    getObjectsAtCoords: (coords) => grid.getObjectsInCoords(coords),
     radians: Math.random() * Math.PI * 2,
     speed: 1,
     interval: 20,
     trailLength: 10,
-    viewDistance: 40,
+    viewDistance: 20,
+    fov: Math.PI/2
   })
 
   nest.addAnt(ant)

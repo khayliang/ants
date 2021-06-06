@@ -1,4 +1,5 @@
 import AntGraphic from './AntGraphic'
+import Eye from './Eye'
 import GameObject from './GameObject'
 import PheromoneTrail from './PheromoneTrail'
 
@@ -8,12 +9,13 @@ export default class extends GameObject {
     addChild = () => {},
     removeChild = () => {},
     getRandomValue = () => 0,
-    getObjectAtCoords = () => [],
+    getObjectsAtCoords = () => [],
     radians = 0,
     interval = 10,
     viewDistance = 10,
     speed = 1,
     trailLength = 10,
+    fov = 0.52,
   } = {}) {
     super(new AntGraphic())
 
@@ -22,11 +24,11 @@ export default class extends GameObject {
       removeChild,
       lifetime: trailLength * interval,
     })
+    this.eye = new Eye({ object: this, getObjectsAtCoords, viewDistance, fov })
 
     this.setRadians(radians)
 
     this.getRandomValue = getRandomValue
-    this.getObjectAtCoords = getObjectAtCoords
     this.speed = speed
     this.pheromoneInterval = interval
     this.viewDistance = viewDistance
@@ -46,27 +48,13 @@ export default class extends GameObject {
     return 0
   }
 
-  getObjectAtCoords() {
-    return []
-  }
-
-  peekInfront() {
-    const coords = this.getCoords()
-    const rad = this.getRadians()
-    const coordsToPeek = {
-      x: coords.x + this.viewDistance * Math.cos(rad),
-      y: coords.y + this.viewDistance * Math.sin(rad),
-    }
-    return this.getObjectAtCoords(coordsToPeek)
-  }
-
   sprayPheromone() {
     this.pheromones.add(this.getCoords())
   }
 
   update() {
     const coords = this.getCoords()
-    this.peekInfront()
+    this.eye.getNearbyObjects()
     this.setRadians(this.getRadians() + this.getRandomValue())
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),

@@ -14,36 +14,22 @@ export default class Eye {
   }
 
   getNearbyObjects() {
-    return [...this.getObjectsInfront(), ...this.getObjectsLeft(), ...this.getObjectsRight()]
-  }
-
-  getObjectsInfront() {
     const currCoords = this.object.getCoords()
     const currRad = this.object.getRadians()
-    const coordsToGet = {
-      x: currCoords.x + this.viewDistance * Math.cos(currRad),
-      y: currCoords.y + this.viewDistance * Math.sin(currRad),
-    }
-    return this.getObjectsAtCoords(coordsToGet)
-  }
-
-  getObjectsLeft() {
-    const currCoords = this.object.getCoords()
-    const currRad = this.object.getRadians()
-    const coordsToGet = {
-      x: currCoords.x + this.viewDistance * Math.cos(currRad + this.fov),
-      y: currCoords.y + this.viewDistance * Math.sin(currRad + this.fov),
-    }
-    return this.getObjectsAtCoords(coordsToGet)
-  }
-
-  getObjectsRight() {
-    const currCoords = this.object.getCoords()
-    const currRad = this.object.getRadians()
-    const coordsToGet = {
-      x: currCoords.x + this.viewDistance * Math.cos(currRad - this.fov),
-      y: currCoords.y + this.viewDistance * Math.sin(currRad - this.fov),
-    }
-    return this.getObjectsAtCoords(coordsToGet)
+    return [
+      ...this.getObjectsAtCoords(currCoords),
+      ...this.getObjectsAtCoords({
+        x: currCoords.x + this.viewDistance * Math.cos(currRad),
+        y: currCoords.y + this.viewDistance * Math.sin(currRad),
+      }), 
+      ...this.getObjectsAtCoords({
+        x: currCoords.x + this.viewDistance * Math.cos(currRad + this.fov),
+        y: currCoords.y + this.viewDistance * Math.sin(currRad + this.fov),
+      }), 
+      ...this.getObjectsAtCoords({
+        x: currCoords.x + this.viewDistance * Math.cos(currRad - this.fov),
+        y: currCoords.y + this.viewDistance * Math.sin(currRad - this.fov),
+      })
+    ]
   }
 }
