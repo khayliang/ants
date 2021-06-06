@@ -1,3 +1,4 @@
+import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 import PheromoneTrail from './PheromoneTrail'
@@ -5,6 +6,7 @@ import PheromoneTrail from './PheromoneTrail'
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class extends GameObject {
   constructor({
+    mapSize,
     addChild = () => {},
     removeChild = () => {},
     getRandomValue = () => 0,
@@ -25,6 +27,7 @@ export default class extends GameObject {
 
     this.setRadians(radians)
 
+    this.mapSize = mapSize
     this.getRandomValue = getRandomValue
     this.getObjectAtCoords = getObjectAtCoords
     this.speed = speed
@@ -57,7 +60,8 @@ export default class extends GameObject {
       x: coords.x + this.viewDistance * Math.cos(rad),
       y: coords.y + this.viewDistance * Math.sin(rad),
     }
-    return this.getObjectAtCoords(coordsToPeek)
+    const boundedCoords = getCoordsWithinMap(coordsToPeek, this.mapSize)
+    return this.getObjectAtCoords(boundedCoords)
   }
 
   sprayPheromone() {
