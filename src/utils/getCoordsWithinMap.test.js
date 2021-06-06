@@ -12,8 +12,8 @@ test('Function returns coords within map if coords exceed map size', () => {
   }
   let newCoords = getCoordsWithinMap(coords, bounds)
   let expectedCoords = {
-    x: 0,
-    y: bounds.height - coords.y,
+    x: coords.x - bounds.width,
+    y: 25,
   }
   expect(newCoords).toMatchObject(expectedCoords)
 
@@ -23,8 +23,8 @@ test('Function returns coords within map if coords exceed map size', () => {
   }
   newCoords = getCoordsWithinMap(coords, bounds)
   expectedCoords = {
-    x: bounds.width - 1,
-    y: bounds.height - coords.y,
+    x: bounds.width + coords.x,
+    y: coords.y,
   }
   expect(newCoords).toMatchObject(expectedCoords)
 
@@ -35,8 +35,8 @@ test('Function returns coords within map if coords exceed map size', () => {
   newCoords = getCoordsWithinMap(coords, bounds)
 
   expectedCoords = {
-    x: bounds.width - coords.x,
-    y: bounds.height - 1,
+    x: coords.x,
+    y: bounds.height + coords.y,
   }
   expect(newCoords).toMatchObject(expectedCoords)
 
@@ -47,8 +47,8 @@ test('Function returns coords within map if coords exceed map size', () => {
   newCoords = getCoordsWithinMap(coords, bounds)
 
   expectedCoords = {
-    x: bounds.width - coords.x,
-    y: 0,
+    x: coords.x,
+    y: coords.y - bounds.height,
   }
   expect(newCoords).toMatchObject(expectedCoords)
 
@@ -58,8 +58,8 @@ test('Function returns coords within map if coords exceed map size', () => {
   }
   newCoords = getCoordsWithinMap(coords, bounds)
   expectedCoords = {
-    x: bounds.width - 1,
-    y: bounds.height - 1,
+    x: bounds.width + coords.x,
+    y: bounds.height + coords.y,
   }
   expect(newCoords).toMatchObject(expectedCoords)
 })
