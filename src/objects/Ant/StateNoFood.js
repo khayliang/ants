@@ -1,5 +1,6 @@
 /* eslint-disable import/no-cycle */
 
+import Food from '../Food'
 import PheromoneNavigation from '../PheromoneNavigation'
 import StateFoundFood from './StateFoundFood'
 
@@ -15,7 +16,12 @@ export default class StateNoFood {
   getDirection() {
     // if no food, find a food to target
     if (this.ant.eye) {
-      const objs = this.ant.eye.getNearbyObjects()
+      let objs = []
+      if (this.ant.eye.getNearbyClassInstances) {
+        objs = this.ant.eye.getNearbyClassInstances(Food)
+      } else {
+        objs = this.ant.eye.getNearbyObjects()
+      }
       for (let i = 0; i !== objs.length; i += 1) {
         const obj = objs[i]
         if (obj.constructor.name === 'Food') {

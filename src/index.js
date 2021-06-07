@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
 
-const ants = 100
+const ants = 1
 
 const app = new Application({
   width: window.innerWidth,
@@ -66,6 +66,7 @@ for (let i = 0; i !== ants; i += 1) {
   const eye = new Eye({
     object: ant,
     getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
+    getClassInstancesAtCoords: (coords, classType) => grid.getClassInstancesInMultipleCoords(coords, classType),
     viewDistance: 30,
     fov: Math.PI / 6,
   })
