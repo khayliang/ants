@@ -12,7 +12,7 @@ export default class Food extends GameObject {
 
   take() {
     this.taken = true
-    this.onTake(this)
+    this.onTake()
     return this
   }
 
