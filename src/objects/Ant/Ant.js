@@ -39,6 +39,11 @@ export default class Ant extends GameObject {
     return this
   }
 
+  setState(state) {
+    this.state = state
+    return this
+  }
+
   getRandomValue() {
     return 0
   }

@@ -27,19 +27,13 @@ test('Ant can move in different radians', () => {
   expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
 })
 
-test('Ant movement can be random', () => {
+test('Ant moves based on return value from getNewDirection', () => {
   const ant = new Ant({
-    getRandomValue: () => Math.random(),
+    initialRadians: 2,
   })
-  const ant1 = new Ant({
-    getRandomValue: () => Math.random(),
-  })
-  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
-  expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
-  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
-  expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
-  expect(ant.update().getCoords()).not.toMatchObject(ant1.update().getCoords())
-  expect(ant.update().getRadians()).not.toEqual(ant1.update().getRadians())
+  const newRadians = 555
+  jest.spyOn(ant, 'getNewDirection').mockImplementation(() => newRadians)
+  expect(ant.update().getRadians()).toEqual(newRadians)
 })
 
 test('Ant can lay down a pheromone trail', () => {

@@ -1,5 +1,6 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import Pheromone from '../Pheromone'
+import FoundFoodState from './FoundFoodState'
 
 export default class NoFoodState {
   constructor(ant) {
@@ -12,43 +13,17 @@ export default class NoFoodState {
 
   getDirection() {
     // if no food, find a food to target
-    if (this.ant.eye && !this.ant.targetFood) {
+    if (this.ant.eye) {
       const objs = this.ant.eye.getNearbyObjects()
       for (const obj of objs) {
         if (obj.constructor.name === 'Food') {
           if (obj.isTaken()) continue
-          this.ant.targetFood = obj
-          break
+          const newState = new FoundFoodState(this.ant, obj)
+          this.ant.setState(newState)
+          return newState.getDirection()
         }
       }
     }
-
-    // if food targeted, turn to find food
-    if (this.ant.targetFood) {
-      if (!this.ant.targetFood.isTaken()) {
-        if (
-          calculateDistanceBetweenCoords(this.ant.targetFood.getCoords(), this.ant.getCoords()) <
-          this.ant.reachDistance
-        ) {
-          this.ant.targetFood.take()
-          this.ant.heldFood = this.ant.targetFood
-          this.ant.targetFood = null
-        } else {
-          const foodCoords = this.ant.targetFood.getCoords()
-          const myCoords = this.ant.getCoords()
-          const radiansDiff =
-            Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
-          return radiansDiff
-        }
-      } else {
-        this.ant.targetFood = null
-      }
-    }
-
-    if (!this.ant.targetFood) {
-      return this.ant.getRadians() + this.ant.getRandomValue()
-    }
-
-    return 2
+    return this.ant.getRadians() + this.ant.getRandomValue()
   }
 }
