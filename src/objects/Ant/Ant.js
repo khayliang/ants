@@ -2,12 +2,13 @@ import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoord
 import AntGraphic from './AntGraphic'
 import GameObject from '../GameObject'
 import NoFoodState from './NoFoodState'
+import PheromoneTrail from '../PheromoneTrail'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class Ant extends GameObject {
   constructor({
     getRandomValue = () => 0,
-    trail = null,
+    trail = new PheromoneTrail(),
     eye = null,
     initialRadians = 0,
     interval = 10,
@@ -46,10 +47,6 @@ export default class Ant extends GameObject {
     this.state.sprayPheromone()
   }
 
-  updatePheromoneTrails() {
-    if (this.trail) this.trail.update()
-  }
-
   getNewDirection() {
     return this.state.getDirection()
   }
@@ -69,7 +66,8 @@ export default class Ant extends GameObject {
       this.sprayPheromone()
       this.updateAmt = 0
     }
-    this.updatePheromoneTrails()
+
+    this.trail.update()
 
     this.updateAmt += 1
     return this
