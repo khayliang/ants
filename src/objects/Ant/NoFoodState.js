@@ -1,8 +1,12 @@
 import calculateDistanceBetweenCoords from "../../utils/calcDistanceBetweenCoords"
+import Pheromone from "../Pheromone"
 
 export default class NoFoodState {
   constructor(ant){
     this.ant = ant
+  }
+  sprayPheromone(){
+    if (this.ant.defaultTrail) this.ant.defaultTrail.add(new Pheromone(this.ant.getCoords()))
   }
   getDirection(){
     // if no food, find a food to target

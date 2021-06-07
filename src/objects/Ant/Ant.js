@@ -43,7 +43,7 @@ export default class Ant extends GameObject {
   }
 
   sprayPheromone() {
-    if (this.defaultTrail) this.defaultTrail.add(this.getCoords())
+    this.state.sprayPheromone()
   }
 
   updatePheromoneTrails() {

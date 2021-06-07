@@ -1,6 +1,7 @@
 import Ant from './Ant'
 import AntGraphic from './AntGraphic'
 import Food from '../Food'
+import Pheromone from "../Pheromone"
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
   const ant = new Ant()
@@ -49,25 +50,8 @@ test('Ant can lay down a pheromone trail', () => {
     },
   })
 
-  const trailAmt = 10
-  for (let i = 0; i !== trailAmt; i += 1) {
-    ant.sprayPheromone()
-  }
-  expect(addFn).toHaveBeenCalledTimes(trailAmt)
-})
-
-test('Ant updates pheromone trail', () => {
-  const addFn = jest.fn()
-  const updateFn = jest.fn()
-  const ant = new Ant({
-    defaultTrail: {
-      add: addFn,
-      update: updateFn,
-    },
-  })
-  expect(updateFn).not.toHaveBeenCalled()
-  ant.update()
-  expect(updateFn).toHaveBeenCalled()
+  ant.sprayPheromone()
+  expect(addFn).toHaveBeenCalled()
 })
 
 test('Ant sprays a pheromone every interval', () => {
@@ -82,6 +66,19 @@ test('Ant sprays a pheromone every interval', () => {
     ant.update()
   }
   expect(sprayPheromoneSpy).toHaveBeenCalledTimes(expectedSprayedAmt)
+})
+
+test('Ant updates pheromone trail', () => {
+  const updateFn = jest.fn()
+  const ant = new Ant({
+    defaultTrail: {
+      add: () => {},
+      update: updateFn,
+    },
+  })
+  expect(updateFn).not.toHaveBeenCalled()
+  ant.update()
+  expect(updateFn).toHaveBeenCalled()
 })
 
 test('When eye detects food, ant changes direction to food', () => {

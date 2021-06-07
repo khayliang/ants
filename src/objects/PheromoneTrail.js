@@ -15,9 +15,8 @@ export default class PheromoneTrail {
 
   removePheromoneFromMap() {}
 
-  add(coords) {
+  add(pheromone) {
     if (this.lifetime === 0) return
-    const pheromone = new Pheromone(coords)
     pheromone.setLifetime(this.lifetime)
     this.pheromones.push(pheromone)
     this.addPheromoneToMap(pheromone)
