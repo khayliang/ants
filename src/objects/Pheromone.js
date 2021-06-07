@@ -1,7 +1,7 @@
 import GameObject from './GameObject'
 import PheremoneGraphic from './PheremoneGraphic'
 
-export default class extends GameObject {
+export default class Pheromone extends GameObject {
   constructor(coords = { x: 0, y: 0 }) {
     super(new PheremoneGraphic())
     this.lifetime = 1

@@ -103,7 +103,6 @@ test('When eye detects food, ant changes direction to food', () => {
   expect(newRadians).not.toEqual(initialRadians)
 })
 
-
 test('When ant touches targetFood, ant holds food', () => {
   const initialRadians = 0
   const ant = new Ant({
@@ -124,4 +123,3 @@ test('When ant touches targetFood, ant holds food', () => {
   expect(food.isTaken()).toEqual(true)
   expect(ant.heldFood).toBe(food)
 })
-

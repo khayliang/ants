@@ -1,6 +1,6 @@
 import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 
-export default class {
+export default class GameObject {
   constructor(graphic, mapSize = { width: window.innerWidth, height: window.innerHeight }) {
     this.graphic = graphic
     this.originalTint = graphic.tint

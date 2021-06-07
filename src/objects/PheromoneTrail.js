@@ -3,7 +3,7 @@ import Pheromone from './Pheromone'
 /* eslint class-methods-use-this: [
   "error", { "exceptMethods": ["onPheromoneAdd", "onPheromoneExpire"] }
 ] */
-export default class {
+export default class PheromoneTrail {
   constructor({ onPheromoneAdd = () => {}, onPheromoneExpire = () => {}, lifetime } = {}) {
     this.pheromones = []
     this.lifetime = lifetime || 0

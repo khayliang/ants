@@ -1,7 +1,7 @@
 import { Graphics } from 'pixi.js'
 import '@pixi/graphics-extras'
 
-export default class extends Graphics {
+export default class AntGraphic extends Graphics {
   constructor() {
     super()
     this.beginFill(0xffffff)

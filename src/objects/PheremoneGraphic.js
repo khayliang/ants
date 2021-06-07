@@ -1,6 +1,6 @@
 import { Graphics } from 'pixi.js'
 
-export default class extends Graphics {
+export default class PheromoneGraphic extends Graphics {
   constructor() {
     super()
     this.beginFill(0xfdee87)

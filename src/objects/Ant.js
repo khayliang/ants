@@ -3,7 +3,7 @@ import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
-export default class extends GameObject {
+export default class Ant extends GameObject {
   constructor({
     getRandomValue = () => 0,
     defaultTrail = null,
@@ -62,7 +62,7 @@ export default class extends GameObject {
     // if food targeted, turn to find food
     if (this.targetFood) {
       if (!this.targetFood.isTaken()) {
-        if (isEqual(this.targetFood.getCoords(), this.getCoords())){
+        if (isEqual(this.targetFood.getCoords(), this.getCoords())) {
           this.targetFood.take()
           this.heldFood = this.targetFood
           this.targetFood = null

@@ -1,6 +1,6 @@
 import { Graphics } from 'pixi.js'
 
-export default class extends Graphics {
+export default class FoodGraphic extends Graphics {
   constructor() {
     super()
     this.beginFill(0x710193)
