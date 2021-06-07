@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 
-import Pheromone from '../Pheromone'
+import PheromoneNavigation from '../PheromoneNavigation'
 import StateFoundFood from './StateFoundFood'
 
 export default class StateNoFood {
@@ -9,7 +9,7 @@ export default class StateNoFood {
   }
 
   sprayPheromone() {
-    if (this.ant.trail) this.ant.trail.add(new Pheromone(this.ant.getCoords()))
+    if (this.ant.trail) this.ant.trail.add(new PheromoneNavigation(this.ant.getCoords()))
   }
 
   getDirection() {

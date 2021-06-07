@@ -1,8 +1,8 @@
-import Pheromone from "./Pheromone";
-import PheromoneFoodGraphic from "./PheromoneFoodGraphic";
+import Pheromone from './Pheromone'
+import PheromoneFoodGraphic from './PheromoneFoodGraphic'
 
 export default class PheromoneFood extends Pheromone {
-  constructor(coords){
+  constructor(coords) {
     super(coords, new PheromoneFoodGraphic())
   }
 }

@@ -1,5 +1,5 @@
 import Food from '../Food'
-import Pheromone from '../Pheromone'
+import PheromoneNavigation from '../PheromoneNavigation'
 import Ant from './Ant'
 import StateFoundFood from './StateFoundFood'
 import StateNoFood from './StateNoFood'
@@ -24,7 +24,7 @@ test('StateNoFood gives random radians to move', () => {
   expect(state.getDirection()).not.toEqual(initialRadians)
 })
 
-test('StateNoFood sprays a default pheromone', () => {
+test('StateNoFood sprays a navigation pheromone', () => {
   const addFn = jest.fn()
   const ant = new Ant({
     trail: {
@@ -34,12 +34,12 @@ test('StateNoFood sprays a default pheromone', () => {
 
   const state = new StateNoFood(ant)
   state.sprayPheromone()
-  expect(addFn.mock.calls[0][0]).toBeInstanceOf(Pheromone)
+  expect(addFn.mock.calls[0][0]).toBeInstanceOf(PheromoneNavigation)
 })
 
 test('When eye detects food, ant state changes to StateFoundFood', () => {
   const ant = new Ant({
-    speed: 0
+    speed: 0,
   })
   const food = new Food()
   food.setCoords({ x: 0, y: 0 })

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-cycle */
 
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
-import Pheromone from '../Pheromone'
+import PheromoneNavigation from '../PheromoneNavigation'
 import StateHeldFood from './StateHeldFood'
 import StateNoFood from './StateNoFood'
 
@@ -12,7 +12,7 @@ export default class StateFoundFood {
   }
 
   sprayPheromone() {
-    if (this.ant.trail) this.ant.trail.add(new Pheromone(this.ant.getCoords()))
+    if (this.ant.trail) this.ant.trail.add(new PheromoneNavigation(this.ant.getCoords()))
   }
 
   getDirection() {

@@ -1,6 +1,5 @@
 import Ant from './Ant'
 import AntGraphic from './AntGraphic'
-import Food from '../Food'
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
   const ant = new Ant()
