@@ -75,7 +75,7 @@ for (let i = 0; i !== ants; i += 1) {
   app.ticker.add(() => ant.update())
 }
 
-const foods = 100
+const foods = 10
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food()
   food.setCoords({

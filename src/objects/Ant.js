@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash'
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 
@@ -22,6 +23,8 @@ export default class extends GameObject {
     this.pheromoneInterval = interval
     this.defaultTrail = defaultTrail
 
+    this.targetFood = null
+    this.heldFood = null
     this.updateAmt = 0
   }
 
@@ -44,8 +47,41 @@ export default class extends GameObject {
 
   update() {
     const coords = this.getCoords()
-  
-    this.setRadians(this.getRadians() + this.getRandomValue())
+    // if no food, find a food to target
+    if (this.eye && !this.targetFood) {
+      const objs = this.eye.getNearbyObjects()
+      for (const obj of objs) {
+        if (obj.constructor.name === 'Food') {
+          if (obj.isTaken()) continue
+          this.targetFood = obj
+          break
+        }
+      }
+    }
+
+    // if food targeted, turn to find food
+    if (this.targetFood) {
+      if (!this.targetFood.isTaken()) {
+        if (isEqual(this.targetFood.getCoords(), this.getCoords())){
+          this.targetFood.take()
+          this.heldFood = this.targetFood
+          this.targetFood = null
+        }
+
+        const foodCoords = this.targetFood.getCoords()
+        const myCoords = this.getCoords()
+        const radiansDiff =
+          Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
+        this.setRadians(radiansDiff)
+      } else {
+        this.targetFood = null
+      }
+    }
+
+    if (!this.targetFood) {
+      this.setRadians(this.getRadians() + this.getRandomValue())
+    }
+
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
       y: coords.y + this.speed * Math.sin(this.getRadians()),
