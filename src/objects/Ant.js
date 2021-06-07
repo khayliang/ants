@@ -66,13 +66,13 @@ export default class Ant extends GameObject {
           this.targetFood.take()
           this.heldFood = this.targetFood
           this.targetFood = null
+        } else {
+          const foodCoords = this.targetFood.getCoords()
+          const myCoords = this.getCoords()
+          const radiansDiff =
+            Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
+          this.setRadians(radiansDiff)
         }
-
-        const foodCoords = this.targetFood.getCoords()
-        const myCoords = this.getCoords()
-        const radiansDiff =
-          Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
-        this.setRadians(radiansDiff)
       } else {
         this.targetFood = null
       }
