@@ -1,4 +1,5 @@
-import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
+/* eslint-disable import/no-cycle */
+
 import Pheromone from '../Pheromone'
 import StateFoundFood from './StateFoundFood'
 
@@ -15,9 +16,9 @@ export default class StateNoFood {
     // if no food, find a food to target
     if (this.ant.eye) {
       const objs = this.ant.eye.getNearbyObjects()
-      for (const obj of objs) {
+      for (let i = 0; i !== objs.length; i += 1) {
+        const obj = objs[i]
         if (obj.constructor.name === 'Food') {
-          if (obj.isTaken()) continue
           const newState = new StateFoundFood(this.ant, obj)
           this.ant.setState(newState)
           return newState.getDirection()

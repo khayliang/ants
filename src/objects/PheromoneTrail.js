@@ -1,5 +1,3 @@
-import Pheromone from './Pheromone'
-
 /* eslint class-methods-use-this: [
   "error", { "exceptMethods": ["addPheromoneToMap", "removePheromoneFromMap"] }
 ] */

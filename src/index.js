@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
 
-const ants = 1
+const ants = 100
 
 const app = new Application({
   width: window.innerWidth,
@@ -76,7 +76,7 @@ for (let i = 0; i !== ants; i += 1) {
   app.ticker.add(() => ant.update())
 }
 
-const foods = 10
+const foods = 50
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
     onTake: () => removeInteractableObject(food),

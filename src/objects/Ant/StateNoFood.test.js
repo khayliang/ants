@@ -1,4 +1,3 @@
-import Eye from '../Eye'
 import Food from '../Food'
 import Pheromone from '../Pheromone'
 import Ant from './Ant'

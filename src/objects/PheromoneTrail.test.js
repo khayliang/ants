@@ -5,7 +5,9 @@ import Pheromone from './Pheromone'
 test('Pheromone can be initialized without arguments', () => {
   const PheromoneTrail = require('./PheromoneTrail').default
   expect(() => {
-    new PheromoneTrail()
+    const trail = new PheromoneTrail()
+    trail.update()
+    trail.add(new Pheromone())
   }).not.toThrow()
 })
 

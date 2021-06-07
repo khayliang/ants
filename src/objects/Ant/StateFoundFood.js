@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import Pheromone from '../Pheromone'
 import StateHeldFood from './StateHeldFood'
