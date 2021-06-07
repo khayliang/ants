@@ -1,6 +1,6 @@
 import { Graphics } from 'pixi.js'
 
-export default class extends Graphics {
+export default class TileGraphic extends Graphics {
   constructor({ x, y, width, height }) {
     super()
     this.beginFill(0x404040)

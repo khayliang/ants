@@ -3,7 +3,7 @@ import doesCoordExceedBounds from '../utils/doesCoordExceedBounds'
 import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import Tile from './Tile'
 
-export default class {
+export default class PartitionGrid {
   constructor({ width, height, tileSize = 50 } = {}) {
     this.width = width
     this.height = height
