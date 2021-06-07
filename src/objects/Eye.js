@@ -1,4 +1,7 @@
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["getObjectsAtCoords"] }] */
+/* eslint class-methods-use-this: ["error", { "exceptMethods": [
+  "getObjectsAtCoords",
+  "getClassInstancesAtCoords"
+] }] */
 
 export default class Eye {
   constructor({
