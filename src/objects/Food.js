@@ -2,9 +2,7 @@ import FoodGraphic from './FoodGraphic'
 import GameObject from './GameObject'
 
 export default class Food extends GameObject {
-  constructor({
-    onTake = () => null,
-  } = {}) {
+  constructor({ onTake = () => null } = {}) {
     super(new FoodGraphic())
     this.taken = false
     this.onTake = onTake

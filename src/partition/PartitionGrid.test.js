@@ -133,7 +133,7 @@ test('Coords that exceed bounds arent gotten from tile', () => {
     { x: 33, y: 60 },
   ]
   coordsList.forEach((coord) => {
-    const obj = new GameObject(new Graphics(), {width, height})
+    const obj = new GameObject(new Graphics(), { width, height })
     obj.setCoords(coord)
     grid.addObject(obj)
   })

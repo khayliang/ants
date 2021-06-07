@@ -108,7 +108,7 @@ test('When ant touches targetFood, ant holds food', () => {
   const ant = new Ant({
     initialRadians,
     reachDistance: 10,
-    speed: 0
+    speed: 0,
   })
   const food = new Food()
   food.setCoords({ x: 5, y: 5 })

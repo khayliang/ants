@@ -60,7 +60,7 @@ for (let i = 0; i !== ants; i += 1) {
     defaultTrail,
     speed: 1,
     interval,
-    reachDistance: 10
+    reachDistance: 10,
   })
 
   const eye = new Eye({
@@ -79,7 +79,7 @@ for (let i = 0; i !== ants; i += 1) {
 const foods = 10
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
-    onTake: removeInteractableObject
+    onTake: removeInteractableObject,
   })
   food.setCoords({
     x: Math.random() * window.innerWidth,

@@ -10,7 +10,7 @@ test('Food can be taken by ant', () => {
 test('When food is taken, food removes itself from the grid and app', () => {
   const onTakenMock = jest.fn()
   const food = new Food({
-    onTake: onTakenMock
+    onTake: onTakenMock,
   })
   food.take()
   expect(onTakenMock).toHaveBeenCalledWith(food)

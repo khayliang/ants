@@ -65,7 +65,10 @@ export default class Ant extends GameObject {
     // if food targeted, turn to find food
     if (this.targetFood) {
       if (!this.targetFood.isTaken()) {
-        if (calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) < this.reachDistance) {
+        if (
+          calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) <
+          this.reachDistance
+        ) {
           this.targetFood.take()
           this.heldFood = this.targetFood
           this.targetFood = null

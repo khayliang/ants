@@ -44,7 +44,7 @@ export default class PartitionGrid {
   }
 
   getObjectsInCoords(coords) {
-    if (doesCoordExceedBounds(coords, {width: this.width, height: this.height})) return []
+    if (doesCoordExceedBounds(coords, { width: this.width, height: this.height })) return []
     const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
     const xTile = Math.floor(x / this.tileSize)
     const yTile = Math.floor(y / this.tileSize)
@@ -53,7 +53,7 @@ export default class PartitionGrid {
 
   getObjectsInMultipleCoords(coordsList) {
     const tileCoordsList = coordsList.reduce((arr, coords) => {
-      if (doesCoordExceedBounds(coords, {width: this.width, height: this.height})) return arr 
+      if (doesCoordExceedBounds(coords, { width: this.width, height: this.height })) return arr
       const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
       arr.push({
         x: Math.floor(x / this.tileSize),
