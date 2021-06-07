@@ -138,8 +138,8 @@ test('Coords that exceed bounds arent gotten from tile', () => {
     grid.addObject(obj)
   })
 
-  const objs = grid.getObjectsInMultipleCoords(coordsList)
-  expect(objs.length).toBe(0)
-  const obj = grid.getObjectsInCoords(coordsList[0])
-  expect(objs.length).toBe(0)
+  const objs1 = grid.getObjectsInMultipleCoords(coordsList)
+  expect(objs1.length).toBe(0)
+  const objs2 = grid.getObjectsInCoords(coordsList[0])
+  expect(objs2.length).toBe(0)
 })

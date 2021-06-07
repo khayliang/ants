@@ -1,4 +1,3 @@
-import { isEqual } from 'lodash'
 import calculateDistanceBetweenCoords from '../utils/calcDistanceBetweenCoords'
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
