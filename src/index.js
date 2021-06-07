@@ -78,7 +78,7 @@ for (let i = 0; i !== ants; i += 1) {
   app.ticker.add(() => ant.update())
 }
 
-const foods = 20
+const foods = 50
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
     onTake: () => removeInteractableObject(food),
