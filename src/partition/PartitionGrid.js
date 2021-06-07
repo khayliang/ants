@@ -68,6 +68,24 @@ export default class PartitionGrid {
     )
   }
 
+
+  getClassInstancesInMultipleCoords(coordsList, classType) {
+    const tileCoordsList = coordsList.reduce((arr, coords) => {
+      if (doesCoordExceedBounds(coords, { width: this.width, height: this.height })) return arr
+      const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
+      arr.push({
+        x: Math.floor(x / this.tileSize),
+        y: Math.floor(y / this.tileSize),
+      })
+      return arr
+    }, [])
+    const filteredCoordsList = uniqWith(tileCoordsList, isEqual)
+    return filteredCoordsList.reduce(
+      (allObjs, { x, y }) => [...allObjs, ...this.tiles[y][x].getInstancesOfClass(classType)],
+      [],
+    )
+  }
+
   update() {
     this.getTiles().forEach((tile) => tile.update())
   }

@@ -1,5 +1,6 @@
 import { Graphics } from 'pixi.js'
 import GameObject from '../objects/GameObject'
+import Pheromone from '../objects/Pheromone'
 import PartitionGrid from './PartitionGrid'
 import Tile from './Tile'
 
@@ -55,7 +56,7 @@ test('Object added to grid can be gotten by coords', () => {
   expect(objs[0]).toBe(obj)
 })
 
-test('Multiple coords can be given to grid', () => {
+test('Objects from multiple coords can be gottern from grid', () => {
   const tileSize = 10
   const width = 50
   const height = 50
@@ -76,6 +77,33 @@ test('Multiple coords can be given to grid', () => {
   })
 
   const objs = grid.getObjectsInMultipleCoords(coordsList)
+  expect(objs.length).toBe(3)
+})
+
+test('Class instances from multiple coords can be gottern from grid', () => {
+  const tileSize = 10
+  const width = 50
+  const height = 50
+  const grid = new PartitionGrid({
+    width,
+    height,
+    tileSize,
+  })
+  const coordsList = [
+    { x: 20, y: 20 },
+    { x: 40, y: 40 },
+    { x: 10, y: 10 },
+  ]
+  coordsList.forEach((coord) => {
+    const obj = new GameObject(new Graphics())
+    obj.setCoords(coord)
+    grid.addObject(obj)
+    const pheromone = new Pheromone()
+    pheromone.setCoords(coord)
+    grid.addObject(pheromone)
+  })
+
+  const objs = grid.getClassInstancesInMultipleCoords(coordsList, Pheromone)
   expect(objs.length).toBe(3)
 })
 

@@ -4,21 +4,37 @@ import TileGraphic from './TileGraphic'
 export default class Tile extends GameObject {
   constructor({ x, y, width, height, tint = 0xff0000 }) {
     super(new TileGraphic({ x, y, width, height }))
-    this.objects = new Set()
+    this.objectsMap = {}
     this.tintColor = tint
   }
 
   addObject(obj) {
-    this.objects.add(obj)
+    const className = obj.constructor.name
+    if (this.objectsMap[className]) this.objectsMap[className].add(obj)
+    else {
+      this.objectsMap[className] = new Set()
+      this.objectsMap[className].add(obj)
+    }
   }
 
   getObjects() {
     this.setTint(this.tintColor)
-    return [...this.objects]
+    return Object.values(this.objectsMap).reduce((arr, set) => {
+      return [
+        ...arr,
+        ...set
+      ]
+    }, [])
+  }
+
+  getInstancesOfClass(classType){
+    this.setTint(this.tintColor)
+    return [...(this.objectsMap[classType.name] || [])]
   }
 
   removeObject(obj) {
-    this.objects.delete(obj)
+    const className = obj.constructor.name
+    if (this.objectsMap[className]) this.objectsMap[className].delete(obj)
   }
 
   update() {
