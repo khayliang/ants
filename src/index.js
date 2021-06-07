@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
 
-const ants = 20
+const ants = 1
 
 const app = new Application({
   width: window.innerWidth,

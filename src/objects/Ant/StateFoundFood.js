@@ -22,8 +22,8 @@ export default class StateFoundFood {
       const antCoords = this.ant.getCoords()
       if (calculateDistanceBetweenCoords(foodCoords, antCoords) < this.ant.reachDistance) {
         this.targetFood.take()
-        //const newState = new StateHeldFood(this.ant, this.food)
-        const newState = new StateNoFood(this.ant)
+        const newState = new StateHeldFood(this.ant, this.food)
+        //const newState = new StateNoFood(this.ant)
         this.ant.setState(newState)
         return newState.getDirection()
       }
