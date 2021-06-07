@@ -50,21 +50,20 @@ export default class Ant extends GameObject {
     if (this.defaultTrail) this.defaultTrail.update()
   }
 
-  setNewDirection(){
-    const direction = this.state.getDirection()
-    this.setRadians(direction)
+  getNewDirection(){
+    return this.state.getDirection()
   }
 
   update() {
-    this.setNewDirection()
-
+    const direction = this.getNewDirection()
     const coords = this.getCoords()
     
     const newCoords = {
-      x: coords.x + this.speed * Math.cos(this.getRadians()),
-      y: coords.y + this.speed * Math.sin(this.getRadians()),
+      x: coords.x + this.speed * Math.cos(direction),
+      y: coords.y + this.speed * Math.sin(direction),
     }
     this.setCoords(newCoords)
+    this.setRadians(direction)
 
     if (this.updateAmt % this.pheromoneInterval === 0) {
       this.sprayPheromone()
