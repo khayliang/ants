@@ -1,7 +1,7 @@
 import Ant from './Ant'
 import AntGraphic from './AntGraphic'
 import Food from '../Food'
-import Pheromone from "../Pheromone"
+import Pheromone from '../Pheromone'
 
 test('Ant must have AntGraphic property to render on pixijs', () => {
   const ant = new Ant()
@@ -45,7 +45,7 @@ test('Ant movement can be random', () => {
 test('Ant can lay down a pheromone trail', () => {
   const addFn = jest.fn()
   const ant = new Ant({
-    defaultTrail: {
+    trail: {
       add: addFn,
     },
   })
@@ -71,7 +71,7 @@ test('Ant sprays a pheromone every interval', () => {
 test('Ant updates pheromone trail', () => {
   const updateFn = jest.fn()
   const ant = new Ant({
-    defaultTrail: {
+    trail: {
       add: () => {},
       update: updateFn,
     },

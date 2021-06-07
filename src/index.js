@@ -48,7 +48,7 @@ for (let i = 0; i !== ants; i += 1) {
   const interval = 10
   const lifetime = interval * length
 
-  const defaultTrail = new PheromoneTrail({
+  const trail = new PheromoneTrail({
     addPheromoneToMap: addInteractableObject,
     removePheromoneFromMap: removeInteractableObject,
     lifetime,
@@ -57,7 +57,7 @@ for (let i = 0; i !== ants; i += 1) {
   const ant = new Ant({
     getRandomValue: () => (Math.random() - 0.5) * 0.5,
     initialRadians: Math.random() * Math.PI * 2,
-    defaultTrail,
+    trail,
     speed: 1,
     interval,
     reachDistance: 10,

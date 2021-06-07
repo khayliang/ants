@@ -1,14 +1,16 @@
-import calculateDistanceBetweenCoords from "../../utils/calcDistanceBetweenCoords"
-import Pheromone from "../Pheromone"
+import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
+import Pheromone from '../Pheromone'
 
 export default class NoFoodState {
-  constructor(ant){
+  constructor(ant) {
     this.ant = ant
   }
-  sprayPheromone(){
-    if (this.ant.defaultTrail) this.ant.defaultTrail.add(new Pheromone(this.ant.getCoords()))
+
+  sprayPheromone() {
+    if (this.ant.trail) this.ant.trail.add(new Pheromone(this.ant.getCoords()))
   }
-  getDirection(){
+
+  getDirection() {
     // if no food, find a food to target
     if (this.ant.eye && !this.ant.targetFood) {
       const objs = this.ant.eye.getNearbyObjects()
@@ -36,7 +38,7 @@ export default class NoFoodState {
           const myCoords = this.ant.getCoords()
           const radiansDiff =
             Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
-          return(radiansDiff)
+          return radiansDiff
         }
       } else {
         this.ant.targetFood = null
@@ -44,9 +46,9 @@ export default class NoFoodState {
     }
 
     if (!this.ant.targetFood) {
-      return(this.ant.getRadians() + this.ant.getRandomValue())
+      return this.ant.getRadians() + this.ant.getRandomValue()
     }
 
     return 2
-  } 
+  }
 }

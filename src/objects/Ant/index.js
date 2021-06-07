@@ -1,3 +1,3 @@
-import Ant from "./Ant";
+import Ant from './Ant'
 
 export default Ant

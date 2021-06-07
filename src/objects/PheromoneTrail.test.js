@@ -19,7 +19,7 @@ test('When pheromone trail updates, pheremones are updated too', () => {
 
   const trail = new PheromoneTrail({ lifetime: 10 })
   const pheromone = new Pheromone({ x: 0, y: 0 })
-  const pheromoneUpdateSpy = jest.spyOn(pheromone, "update")
+  const pheromoneUpdateSpy = jest.spyOn(pheromone, 'update')
   trail.add(pheromone)
   const updates = 5
   for (let i = 0; i !== updates; i += 1) {

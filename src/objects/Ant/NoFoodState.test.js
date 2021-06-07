@@ -1,8 +1,8 @@
-import Pheromone from "../Pheromone"
-import Ant from "./Ant"
-import NoFoodState from "./NoFoodState"
+import Pheromone from '../Pheromone'
+import Ant from './Ant'
+import NoFoodState from './NoFoodState'
 
-test("NoFoodState gives radian to move to", () => {
+test('NoFoodState gives radian to move to', () => {
   const ant = new Ant()
   const state = new NoFoodState(ant)
   const rad = state.getDirection()
@@ -12,8 +12,8 @@ test("NoFoodState gives radian to move to", () => {
 test('NoFoodState sprays a default pheromone', () => {
   const addFn = jest.fn()
   const ant = new Ant({
-    defaultTrail: {
-      add: addFn
+    trail: {
+      add: addFn,
     },
   })
 

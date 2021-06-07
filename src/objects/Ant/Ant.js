@@ -7,7 +7,7 @@ import NoFoodState from './NoFoodState'
 export default class Ant extends GameObject {
   constructor({
     getRandomValue = () => 0,
-    defaultTrail = null,
+    trail = null,
     eye = null,
     initialRadians = 0,
     interval = 10,
@@ -19,7 +19,7 @@ export default class Ant extends GameObject {
     this.state = new NoFoodState(this)
 
     this.eye = eye
-    this.defaultTrail = defaultTrail
+    this.trail = trail
 
     this.setRadians(initialRadians)
 
@@ -47,17 +47,17 @@ export default class Ant extends GameObject {
   }
 
   updatePheromoneTrails() {
-    if (this.defaultTrail) this.defaultTrail.update()
+    if (this.trail) this.trail.update()
   }
 
-  getNewDirection(){
+  getNewDirection() {
     return this.state.getDirection()
   }
 
   update() {
     const direction = this.getNewDirection()
     const coords = this.getCoords()
-    
+
     const newCoords = {
       x: coords.x + this.speed * Math.cos(direction),
       y: coords.y + this.speed * Math.sin(direction),
