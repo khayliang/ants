@@ -1,6 +1,7 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import AntGraphic from './AntGraphic'
 import GameObject from '../GameObject'
+import NoFoodState from './NoFoodState'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class Ant extends GameObject {
@@ -14,6 +15,8 @@ export default class Ant extends GameObject {
     reachDistance = 1,
   } = {}) {
     super(new AntGraphic())
+
+    this.state = new NoFoodState(this)
 
     this.eye = eye
 
@@ -47,46 +50,16 @@ export default class Ant extends GameObject {
     if (this.defaultTrail) this.defaultTrail.update()
   }
 
+  setNewDirection(){
+    const direction = this.state.getDirection()
+    this.setRadians(direction)
+  }
+
   update() {
+    this.setNewDirection()
+
     const coords = this.getCoords()
-    // if no food, find a food to target
-    if (this.eye && !this.targetFood) {
-      const objs = this.eye.getNearbyObjects()
-      for (const obj of objs) {
-        if (obj.constructor.name === 'Food') {
-          if (obj.isTaken()) continue
-          this.targetFood = obj
-          break
-        }
-      }
-    }
-
-    // if food targeted, turn to find food
-    if (this.targetFood) {
-      if (!this.targetFood.isTaken()) {
-        if (
-          calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) <
-          this.reachDistance
-        ) {
-          this.targetFood.take()
-          this.heldFood = this.targetFood
-          this.targetFood = null
-        } else {
-          const foodCoords = this.targetFood.getCoords()
-          const myCoords = this.getCoords()
-          const radiansDiff =
-            Math.atan2(-foodCoords.y + myCoords.y, -foodCoords.x + myCoords.x) + Math.PI
-          this.setRadians(radiansDiff)
-        }
-      } else {
-        this.targetFood = null
-      }
-    }
-
-    if (!this.targetFood) {
-      this.setRadians(this.getRadians() + this.getRandomValue())
-    }
-
+    
     const newCoords = {
       x: coords.x + this.speed * Math.cos(this.getRadians()),
       y: coords.y + this.speed * Math.sin(this.getRadians()),
