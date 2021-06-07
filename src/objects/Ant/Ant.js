@@ -1,6 +1,6 @@
-import calculateDistanceBetweenCoords from '../utils/calcDistanceBetweenCoords'
+import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import AntGraphic from './AntGraphic'
-import GameObject from './GameObject'
+import GameObject from '../GameObject'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
 export default class Ant extends GameObject {
