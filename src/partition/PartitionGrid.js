@@ -1,4 +1,5 @@
 import { isEqual, uniqWith } from 'lodash'
+import doesCoordExceedBounds from '../utils/doesCoordExceedBounds'
 import getCoordsWithinMap from '../utils/getCoordsWithinMap'
 import Tile from './Tile'
 
@@ -43,6 +44,7 @@ export default class {
   }
 
   getObjectsInCoords(coords) {
+    if (doesCoordExceedBounds(coords, {width: this.width, height: this.height})) return []
     const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
     const xTile = Math.floor(x / this.tileSize)
     const yTile = Math.floor(y / this.tileSize)
@@ -50,13 +52,15 @@ export default class {
   }
 
   getObjectsInMultipleCoords(coordsList) {
-    const tileCoordsList = coordsList.map((coords) => {
+    const tileCoordsList = coordsList.reduce((arr, coords) => {
+      if (doesCoordExceedBounds(coords, {width: this.width, height: this.height})) return arr 
       const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
-      return {
+      arr.push({
         x: Math.floor(x / this.tileSize),
         y: Math.floor(y / this.tileSize),
-      }
-    })
+      })
+      return arr
+    }, [])
     const filteredCoordsList = uniqWith(tileCoordsList, isEqual)
     return filteredCoordsList.reduce(
       (allObjs, { x, y }) => [...allObjs, ...this.tiles[y][x].getObjects()],

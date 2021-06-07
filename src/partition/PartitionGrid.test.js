@@ -116,3 +116,30 @@ test('Occupancy grid can update tiles', () => {
   grid.update()
   expect(mockUpdate).toHaveBeenCalled()
 })
+
+test('Coords that exceed bounds arent gotten from tile', () => {
+  const tileSize = 10
+  const width = 50
+  const height = 50
+  const grid = new PartitionGrid({
+    width,
+    height,
+    tileSize,
+  })
+  const coordsList = [
+    { x: 60, y: 60 },
+    { x: -5, y: -5 },
+    { x: -50, y: 3 },
+    { x: 33, y: 60 },
+  ]
+  coordsList.forEach((coord) => {
+    const obj = new GameObject(new Graphics(), {width, height})
+    obj.setCoords(coord)
+    grid.addObject(obj)
+  })
+
+  const objs = grid.getObjectsInMultipleCoords(coordsList)
+  expect(objs.length).toBe(0)
+  const obj = grid.getObjectsInCoords(coordsList[0])
+  expect(objs.length).toBe(0)
+})
