@@ -68,7 +68,6 @@ export default class PartitionGrid {
     )
   }
 
-
   getClassInstancesInMultipleCoords(coordsList, classType) {
     const tileCoordsList = coordsList.reduce((arr, coords) => {
       if (doesCoordExceedBounds(coords, { width: this.width, height: this.height })) return arr

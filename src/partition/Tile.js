@@ -19,15 +19,10 @@ export default class Tile extends GameObject {
 
   getObjects() {
     this.setTint(this.tintColor)
-    return Object.values(this.objectsMap).reduce((arr, set) => {
-      return [
-        ...arr,
-        ...set
-      ]
-    }, [])
+    return Object.values(this.objectsMap).reduce((arr, set) => [...arr, ...set], [])
   }
 
-  getInstancesOfClass(classType){
+  getInstancesOfClass(classType) {
     this.setTint(this.tintColor)
     return [...(this.objectsMap[classType.name] || [])]
   }

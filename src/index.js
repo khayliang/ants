@@ -66,7 +66,8 @@ for (let i = 0; i !== ants; i += 1) {
   const eye = new Eye({
     object: ant,
     getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
-    getClassInstancesAtCoords: (coords, classType) => grid.getClassInstancesInMultipleCoords(coords, classType),
+    getClassInstancesAtCoords: (coords, classType) =>
+      grid.getClassInstancesInMultipleCoords(coords, classType),
     viewDistance: 30,
     fov: Math.PI / 6,
   })
