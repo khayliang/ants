@@ -1,4 +1,5 @@
 import { isEqual } from 'lodash'
+import calculateDistanceBetweenCoords from '../utils/calcDistanceBetweenCoords'
 import AntGraphic from './AntGraphic'
 import GameObject from './GameObject'
 
@@ -62,7 +63,7 @@ export default class Ant extends GameObject {
     // if food targeted, turn to find food
     if (this.targetFood) {
       if (!this.targetFood.isTaken()) {
-        if (isEqual(this.targetFood.getCoords(), this.getCoords())) {
+        if (calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) < 2) {
           this.targetFood.take()
           this.heldFood = this.targetFood
           this.targetFood = null
