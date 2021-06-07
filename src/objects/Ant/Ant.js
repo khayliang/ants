@@ -19,13 +19,13 @@ export default class Ant extends GameObject {
     this.state = new NoFoodState(this)
 
     this.eye = eye
+    this.defaultTrail = defaultTrail
 
     this.setRadians(initialRadians)
 
     this.getRandomValue = getRandomValue
     this.speed = speed
     this.pheromoneInterval = interval
-    this.defaultTrail = defaultTrail
     this.reachDistance = reachDistance
 
     this.targetFood = null
