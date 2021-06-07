@@ -12,6 +12,7 @@ export default class Ant extends GameObject {
     initialRadians = 0,
     interval = 10,
     speed = 1,
+    reachDistance = 1,
   } = {}) {
     super(new AntGraphic())
 
@@ -23,6 +24,7 @@ export default class Ant extends GameObject {
     this.speed = speed
     this.pheromoneInterval = interval
     this.defaultTrail = defaultTrail
+    this.reachDistance = reachDistance
 
     this.targetFood = null
     this.heldFood = null
@@ -63,7 +65,7 @@ export default class Ant extends GameObject {
     // if food targeted, turn to find food
     if (this.targetFood) {
       if (!this.targetFood.isTaken()) {
-        if (calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) < 2) {
+        if (calculateDistanceBetweenCoords(this.targetFood.getCoords(), this.getCoords()) < this.reachDistance) {
           this.targetFood.take()
           this.heldFood = this.targetFood
           this.targetFood = null

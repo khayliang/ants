@@ -107,9 +107,11 @@ test('When ant touches targetFood, ant holds food', () => {
   const initialRadians = 0
   const ant = new Ant({
     initialRadians,
+    reachDistance: 10,
+    speed: 0
   })
   const food = new Food()
-  food.setCoords({ x: 0, y: 0 })
+  food.setCoords({ x: 5, y: 5 })
   ant.setCoords({ x: 0, y: 0 })
   ant.setEye({
     getNearbyObjects: () => [food],
