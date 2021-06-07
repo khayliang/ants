@@ -1,8 +1,8 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import Pheromone from '../Pheromone'
-import FoundFoodState from './FoundFoodState'
+import StateFoundFood from './StateFoundFood'
 
-export default class NoFoodState {
+export default class StateNoFood {
   constructor(ant) {
     this.ant = ant
   }
@@ -18,7 +18,7 @@ export default class NoFoodState {
       for (const obj of objs) {
         if (obj.constructor.name === 'Food') {
           if (obj.isTaken()) continue
-          const newState = new FoundFoodState(this.ant, obj)
+          const newState = new StateFoundFood(this.ant, obj)
           this.ant.setState(newState)
           return newState.getDirection()
         }

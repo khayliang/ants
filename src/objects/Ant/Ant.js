@@ -1,7 +1,7 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import AntGraphic from './AntGraphic'
 import GameObject from '../GameObject'
-import NoFoodState from './NoFoodState'
+import StateNoFood from './StateNoFood'
 import PheromoneTrail from '../PheromoneTrail'
 
 /* eslint class-methods-use-this: ["error", { "exceptMethods": ["getRandomValue"] }] */
@@ -17,7 +17,7 @@ export default class Ant extends GameObject {
   } = {}) {
     super(new AntGraphic())
 
-    this.state = new NoFoodState(this)
+    this.state = new StateNoFood(this)
 
     this.eye = eye
     this.trail = trail

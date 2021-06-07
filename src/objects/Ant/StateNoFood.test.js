@@ -2,30 +2,30 @@ import Eye from '../Eye'
 import Food from '../Food'
 import Pheromone from '../Pheromone'
 import Ant from './Ant'
-import FoundFoodState from './FoundFoodState'
-import NoFoodState from './NoFoodState'
+import StateFoundFood from './StateFoundFood'
+import StateNoFood from './StateNoFood'
 
-test('NoFoodState gives radian to move to', () => {
+test('StateNoFood gives radian to move to', () => {
   const ant = new Ant()
-  const state = new NoFoodState(ant)
+  const state = new StateNoFood(ant)
   const rad = state.getDirection()
   expect(typeof rad).toEqual('number')
 })
 
-test('NoFoodState gives random radians to move', () => {
+test('StateNoFood gives random radians to move', () => {
   const initialRadians = 0
   const ant = new Ant({
     getRandomValue: () => Math.random(),
     initialRadians,
   })
-  const state = new NoFoodState(ant)
+  const state = new StateNoFood(ant)
   expect(state.getDirection()).not.toEqual(initialRadians)
   expect(state.getDirection()).not.toEqual(initialRadians)
   expect(state.getDirection()).not.toEqual(initialRadians)
   expect(state.getDirection()).not.toEqual(initialRadians)
 })
 
-test('NoFoodState sprays a default pheromone', () => {
+test('StateNoFood sprays a default pheromone', () => {
   const addFn = jest.fn()
   const ant = new Ant({
     trail: {
@@ -33,12 +33,12 @@ test('NoFoodState sprays a default pheromone', () => {
     },
   })
 
-  const state = new NoFoodState(ant)
+  const state = new StateNoFood(ant)
   state.sprayPheromone()
   expect(addFn.mock.calls[0][0]).toBeInstanceOf(Pheromone)
 })
 
-test('When eye detects food, ant state changes to FoundFoodState', () => {
+test('When eye detects food, ant state changes to StateFoundFood', () => {
   const ant = new Ant()
   const food = new Food()
   food.setCoords({ x: 0, y: 0 })
@@ -48,5 +48,5 @@ test('When eye detects food, ant state changes to FoundFoodState', () => {
   })
 
   ant.update()
-  expect(ant.state).toBeInstanceOf(FoundFoodState)
+  expect(ant.state).toBeInstanceOf(StateFoundFood)
 })

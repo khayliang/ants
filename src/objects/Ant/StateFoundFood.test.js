@@ -1,8 +1,8 @@
 import Food from '../Food'
 import Ant from './Ant'
-import FoundFoodState from './FoundFoodState'
-import HeldFoodState from './HeldFoodState'
-import NoFoodState from './NoFoodState'
+import StateFoundFood from './StateFoundFood'
+import StateHeldFood from './StateHeldFood'
+import StateNoFood from './StateNoFood'
 
 test('When eye detects food, ant changes direction to food', () => {
   const initialRadians = 0
@@ -12,13 +12,13 @@ test('When eye detects food, ant changes direction to food', () => {
   const food = new Food()
   food.setCoords({ x: 5, y: 5 })
   ant.setCoords({ x: 0, y: 0 })
-  const state = new FoundFoodState(ant, food)
+  const state = new StateFoundFood(ant, food)
   const newDirection = state.getDirection()
   expect(typeof newDirection).toEqual('number')
   expect(newDirection).not.toEqual(initialRadians)
 })
 
-test('When chasing food but food taken, ant changes state to NoFoodState', () => {
+test('When chasing food but food taken, ant changes state to StateNoFood', () => {
   const initialRadians = 0
   const ant = new Ant({
     initialRadians,
@@ -27,12 +27,12 @@ test('When chasing food but food taken, ant changes state to NoFoodState', () =>
   food.setCoords({ x: 5, y: 5 })
   food.take()
   ant.setCoords({ x: 0, y: 0 })
-  const state = new FoundFoodState(ant, food)
+  const state = new StateFoundFood(ant, food)
   state.getDirection()
-  expect(ant.state).toBeInstanceOf(NoFoodState)
+  expect(ant.state).toBeInstanceOf(StateNoFood)
 })
 
-test('When ant touches targetFood, ant changes state to HeldFoodState', () => {
+test('When ant touches targetFood, ant changes state to StateHeldFood', () => {
   const initialRadians = 0
   const ant = new Ant({
     initialRadians,
@@ -52,5 +52,5 @@ test('When ant touches targetFood, ant changes state to HeldFoodState', () => {
   ant.update()
 
   expect(food.isTaken()).toEqual(true)
-  expect(ant.state).toBeInstanceOf(HeldFoodState)
+  expect(ant.state).toBeInstanceOf(StateHeldFood)
 })

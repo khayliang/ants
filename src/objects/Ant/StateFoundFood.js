@@ -1,9 +1,9 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
 import Pheromone from '../Pheromone'
-import HeldFoodState from './HeldFoodState'
-import NoFoodState from './NoFoodState'
+import StateHeldFood from './StateHeldFood'
+import StateNoFood from './StateNoFood'
 
-export default class FoundFoodState {
+export default class StateFoundFood {
   constructor(ant, food) {
     this.ant = ant
     this.targetFood = food
@@ -19,7 +19,7 @@ export default class FoundFoodState {
       const antCoords = this.ant.getCoords()
       if (calculateDistanceBetweenCoords(foodCoords, antCoords) < this.ant.reachDistance) {
         this.targetFood.take()
-        const newState = new HeldFoodState(this.ant, this.food)
+        const newState = new StateHeldFood(this.ant, this.food)
         this.ant.setState(newState)
         return newState.getDirection()
       }
@@ -27,7 +27,7 @@ export default class FoundFoodState {
         Math.atan2(-foodCoords.y + antCoords.y, -foodCoords.x + antCoords.x) + Math.PI
       return radiansDiff
     }
-    const newState = new NoFoodState(this.ant)
+    const newState = new StateNoFood(this.ant)
     this.ant.setState(newState)
     return newState.getDirection()
   }

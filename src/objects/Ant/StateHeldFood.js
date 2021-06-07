@@ -1,4 +1,4 @@
-export default class HeldFoodState {
+export default class StateHeldFood {
   constructor() {}
 
   sprayPheromone() {}
