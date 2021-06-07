@@ -2,8 +2,8 @@ import GameObject from './GameObject'
 import PheremoneGraphic from './PheremoneGraphic'
 
 export default class Pheromone extends GameObject {
-  constructor(coords = { x: 0, y: 0 }) {
-    super(new PheremoneGraphic())
+  constructor(coords = { x: 0, y: 0 }, graphics) {
+    super(graphics || new PheremoneGraphic())
     this.lifetime = 1
     this.age = 0
     this.setCoords(coords)
