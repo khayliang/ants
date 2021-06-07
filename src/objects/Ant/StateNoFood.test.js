@@ -38,10 +38,12 @@ test('StateNoFood sprays a default pheromone', () => {
 })
 
 test('When eye detects food, ant state changes to StateFoundFood', () => {
-  const ant = new Ant()
+  const ant = new Ant({
+    speed: 0
+  })
   const food = new Food()
   food.setCoords({ x: 0, y: 0 })
-  ant.setCoords({ x: 0, y: 0 })
+  ant.setCoords({ x: 5, y: 5 })
   ant.setEye({
     getNearbyObjects: () => [food],
   })
