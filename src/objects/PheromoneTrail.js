@@ -1,26 +1,26 @@
 import Pheromone from './Pheromone'
 
 /* eslint class-methods-use-this: [
-  "error", { "exceptMethods": ["onPheromoneAdd", "onPheromoneExpire"] }
+  "error", { "exceptMethods": ["addPheromoneToMap", "removePheromoneFromMap"] }
 ] */
 export default class PheromoneTrail {
-  constructor({ onPheromoneAdd = () => {}, onPheromoneExpire = () => {}, lifetime } = {}) {
+  constructor({ addPheromoneToMap = () => {}, removePheromoneFromMap = () => {}, lifetime } = {}) {
     this.pheromones = []
     this.lifetime = lifetime || 0
-    this.onPheromoneAdd = onPheromoneAdd
-    this.onPheromoneExpire = onPheromoneExpire
+    this.addPheromoneToMap = addPheromoneToMap
+    this.removePheromoneFromMap = removePheromoneFromMap
   }
 
-  onPheromoneAdd() {}
+  addPheromoneToMap() {}
 
-  onPheromoneExpire() {}
+  removePheromoneFromMap() {}
 
   add(coords) {
     if (this.lifetime === 0) return
     const pheromone = new Pheromone(coords)
     pheromone.setLifetime(this.lifetime)
     this.pheromones.push(pheromone)
-    this.onPheromoneAdd(pheromone)
+    this.addPheromoneToMap(pheromone)
   }
 
   getPheromones() {
@@ -34,7 +34,7 @@ export default class PheromoneTrail {
         allPheromones.push(pheromone)
         return allPheromones
       }
-      this.onPheromoneExpire(pheromone)
+      this.removePheromoneFromMap(pheromone)
       return allPheromones
     }, [])
   }

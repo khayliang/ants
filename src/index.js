@@ -44,13 +44,13 @@ const removeInteractableObject = (obj) => {
 }
 
 for (let i = 0; i !== ants; i += 1) {
-  const length = 0
+  const length = 10
   const interval = 10
   const lifetime = interval * length
 
   const defaultTrail = new PheromoneTrail({
-    onPheromoneAdd: addInteractableObject,
-    onPheromoneExpire: removeInteractableObject,
+    addPheromoneToMap: addInteractableObject,
+    removePheromoneFromMap: removeInteractableObject,
     lifetime,
   })
 
