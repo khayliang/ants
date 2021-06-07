@@ -13,5 +13,5 @@ test('When food is taken, food removes itself from the grid and app', () => {
     onTake: onTakenMock,
   })
   food.take()
-  expect(onTakenMock).toHaveBeenCalledWith(food)
+  expect(onTakenMock).toHaveBeenCalled()
 })
