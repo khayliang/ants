@@ -55,6 +55,50 @@ export default class Ant extends GameObject {
     return this.state.getDirection()
   }
 
+  getStrongestPheromoneRadDiff(pheromones) {
+    let leftPheromoneCount = 0
+    let leftPheromoneStrength = 0
+    let leftRadSum = 0
+    let rightPheromoneCount = 0
+    let rightPheromoneStrength = 0
+    let rightRadSum = 0
+    let frontPheromoneCount = 0
+    let frontPheromoneStrength = 0
+    let frontRadSum = 0
+
+    let finalRadDiff = 0
+
+    const thresholdRad = this.eye.fov / 3
+
+    for(let i = 0; i !== pheromones.length; i += 1){
+      const pheromone = pheromones[i]
+      const radDiff = this.radiansDiffFrom(pheromone.getCoords())
+
+      if (radDiff > thresholdRad){
+        leftPheromoneCount += 1
+        leftRadSum += radDiff 
+        leftPheromoneStrength += pheromone.getStrength()
+      } else if (radDiff < -thresholdRad){
+        rightPheromoneCount += 1
+        rightRadSum += radDiff
+        rightPheromoneStrength += pheromone.getStrength()
+      } else {
+        frontPheromoneCount += 1
+        frontRadSum += radDiff
+        frontPheromoneStrength += pheromone.getStrength()
+      }
+
+      if (leftPheromoneStrength > rightPheromoneStrength && leftPheromoneStrength > frontPheromoneStrength){
+        finalRadDiff = leftRadSum / leftPheromoneCount || 0
+      } else if (rightPheromoneStrength > leftPheromoneStrength && rightPheromoneCount > frontPheromoneStrength){
+        finalRadDiff = rightRadSum / rightPheromoneCount || 0
+      } else {
+        finalRadDiff = frontRadSum / frontPheromoneCount || 0
+      }
+    }
+    return finalRadDiff
+  }
+
   update() {
     const direction = this.getNewDirection()
     const coords = this.getCoords()
