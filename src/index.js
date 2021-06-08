@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
 
-const ants = 10
+const ants = 30
 
 const app = new Application({
   width: window.innerWidth,
@@ -46,7 +46,7 @@ const removeInteractableObject = (obj) => {
 addInteractableObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
-  const length = 50
+  const length = 70
   const interval = 10
   const lifetime = interval * length
 
@@ -81,13 +81,14 @@ for (let i = 0; i !== ants; i += 1) {
 }
 
 const foods = 50
+const foodSourceCoords = {x: 450, y: 150}
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
     onTake: () => removeInteractableObject(food),
   })
   food.setCoords({
-    x: Math.random() * window.innerWidth,
-    y: Math.random() * window.innerHeight,
+    x: foodSourceCoords.x + (Math.random() * 50)-25,
+    y: foodSourceCoords.y + (Math.random() * 50)-25,
   })
   addInteractableObject(food)
 }
