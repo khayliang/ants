@@ -54,3 +54,12 @@ test('GameObject can reset tint', () => {
   obj.resetTint()
   expect(graphic.tint).toEqual(originalTint)
 })
+
+test("Test calculate difference of radians of coords from GameObject", () => {
+  const graphic = new Graphics()
+  const obj = new GameObject(graphic)  
+  obj.setRadians(0)
+    .setCoords({x: 0, y: 0})
+  const diff = obj.radiansDiffFrom({x: 5, y: 5})
+  expect(diff).toEqual(Math.PI/4)
+})

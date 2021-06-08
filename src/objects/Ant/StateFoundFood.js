@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
-import calcRadDiffOfObjFromAnt from '../../utils/calcRadDiffOfObjFromAnt'
 import PheromoneNavigation from '../PheromoneNavigation'
 import StateHeldFood from './StateHeldFood'
 import StateNoFood from './StateNoFood'
@@ -27,7 +26,7 @@ export default class StateFoundFood {
         this.ant.setState(newState)
         return newState.getDirection()
       }
-      const radiansDiff = calcRadDiffOfObjFromAnt(this.ant, this.targetFood)
+      const radiansDiff = this.ant.radiansDiffFrom(foodCoords)
       return this.ant.getRadians() + radiansDiff * 0.1 + this.ant.getRandomValue()
     }
     const newState = new StateNoFood(this.ant)
