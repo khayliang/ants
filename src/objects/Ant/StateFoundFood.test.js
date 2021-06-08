@@ -44,9 +44,11 @@ test('When ant touches targetFood, ant changes state to StateHeldFood', () => {
   ant.setCoords({ x: 0, y: 0 })
   ant.setEye({
     getNearbyObjects: () => [food],
-    getNearbyClassInstances: () => [food],
+    getNearbyClassInstances: (classType) => { 
+      if (classType.name === Food.name) { return [food] }
+      else return []
+    }
   })
-
   ant.update()
   ant.update()
   ant.update()

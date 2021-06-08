@@ -29,5 +29,5 @@ test('Pheromone can give strength', () => {
   pheromone.update() // age: 1
   pheromone.update() // age: 2
 
-  expect(pheromone.getStrength()).toEqual(3/5)
+  expect(pheromone.getStrength()).toEqual(2/5)
 })
