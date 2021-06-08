@@ -46,9 +46,9 @@ export default class GameObject {
     }
   }
 
-  radiansDiffFrom(coords){
+  radiansDiffFrom(coords) {
     const myCoords = this.getCoords()
-    const absoluteRadians = Math.atan2(-coords.y + myCoords.y, -coords.x + myCoords.x) + Math.PI
+    const absoluteRadians = Math.atan2(coords.y - myCoords.y, coords.x - myCoords.x)
     const radiansDiff = absoluteRadians - this.getRadians()
     return radiansDiff
   }
