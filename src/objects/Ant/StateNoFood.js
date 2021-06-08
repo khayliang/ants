@@ -17,11 +17,7 @@ export default class StateNoFood {
     // if no food, find a food to target
     if (this.ant.eye) {
       let objs = []
-      if (this.ant.eye.getNearbyClassInstances) {
-        objs = this.ant.eye.getNearbyClassInstances(Food)
-      } else {
-        objs = this.ant.eye.getNearbyObjects()
-      }
+      objs = this.ant.eye.getNearbyClassInstances(Food)
       for (let i = 0; i !== objs.length; i += 1) {
         const obj = objs[i]
         if (obj.constructor.name === 'Food') {
