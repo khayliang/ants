@@ -43,8 +43,10 @@ const removeInteractableObject = (obj) => {
   grid.removeObject(obj)
 }
 
+addInteractableObject(nest)
+
 for (let i = 0; i !== ants; i += 1) {
-  const length = 10
+  const length = 50
   const interval = 10
   const lifetime = interval * length
 
