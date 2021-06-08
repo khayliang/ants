@@ -51,11 +51,11 @@ export default class StateNoFood {
           }
 
           if (leftPheromoneCount > rightPheromoneCount && leftPheromoneCount > frontPheromoneCount){
-            finalRadDiff = leftRadSum / leftPheromoneCount
+            finalRadDiff = leftRadSum / leftPheromoneCount || 0
           } else if (rightPheromoneCount > leftPheromoneCount && rightPheromoneCount > frontPheromoneCount){
-            finalRadDiff = rightRadSum / rightPheromoneCount
+            finalRadDiff = rightRadSum / rightPheromoneCount || 0
           } else {
-            finalRadDiff = frontRadSum / frontPheromoneCount
+            finalRadDiff = frontRadSum / frontPheromoneCount || 0
           }
         }
 
