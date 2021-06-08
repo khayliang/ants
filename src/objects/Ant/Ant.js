@@ -74,11 +74,11 @@ export default class Ant extends GameObject {
       const pheromone = pheromones[i]
       const radDiff = this.radiansDiffFrom(pheromone.getCoords())
 
-      if (radDiff > thresholdRad){
+      if (radDiff > thresholdRad && radDiff < this.eye.fov){
         leftPheromoneCount += 1
         leftRadSum += radDiff 
         leftPheromoneStrength += pheromone.getStrength()
-      } else if (radDiff < -thresholdRad){
+      } else if (radDiff < -thresholdRad && radDiff > -this.eye.fov){
         rightPheromoneCount += 1
         rightRadSum += radDiff
         rightPheromoneStrength += pheromone.getStrength()
