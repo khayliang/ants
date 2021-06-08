@@ -1,6 +1,5 @@
 import { Graphics } from 'pixi.js'
 import GameObject from '../objects/GameObject'
-import Pheromone from '../objects/Pheromone'
 import Tile from './Tile'
 
 test('Objects can be added to tile', () => {
@@ -44,9 +43,16 @@ test('When tile is updates after being queried, tint color is resetted', () => {
 test('Tile can get objects based on class', () => {
   const tile = new Tile({ x: 0, y: 0, width: 0, height: 0 })
   const obj = new GameObject(new Graphics())
-  const pheromone = new Pheromone()
   tile.addObject(obj)
-  tile.addObject(pheromone)
-  const arr = tile.getInstancesOfClass(Pheromone)
-  expect(arr[0]).toBe(pheromone)
+  const arr = tile.getInstancesOfClass(GameObject)
+  expect(arr[0]).toBe(obj)
+})
+
+test('Get class instance from tile that doesnt exist works', () => {
+  const tile = new Tile({ x: 0, y: 0, width: 0, height: 0 })
+  const obj = new GameObject(new Graphics())
+  tile.addObject(obj)
+  expect(() => {
+    expect(tile.getInstancesOfClass(Tile)).toEqual(expect.arrayContaining([]))
+  }).not.toThrow()
 })
