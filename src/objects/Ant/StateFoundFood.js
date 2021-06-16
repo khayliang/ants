@@ -24,7 +24,7 @@ export default class StateFoundFood {
         const newState = new StateHeldFood(this.ant, this.food)
         // const newState = new StateNoFood(this.ant)
         this.ant.setState(newState)
-        return newState.getDirection()
+        return this.ant.getRadians() - Math.PI
       }
       const radiansDiff = this.ant.radiansDiffFrom(foodCoords)
       return this.ant.getRadians() + radiansDiff * 0.1 + this.ant.getRandomValue()
