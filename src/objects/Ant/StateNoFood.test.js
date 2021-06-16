@@ -53,7 +53,7 @@ test('When eye detects food, ant state changes to StateFoundFood', () => {
   ant.update()
   expect(ant.state).toBeInstanceOf(StateFoundFood)
 })
-
+// TODO: Resolve tight coupling with eye in method below
 test('Ant moves right if food pheromone right', () => {
   const ant = new Ant({
     speed: 1,

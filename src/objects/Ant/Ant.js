@@ -55,6 +55,7 @@ export default class Ant extends GameObject {
     return this.state.getDirection()
   }
 
+  // TODO: Resolve tight coupling with eye in method below
   getStrongestPheromoneDirection(pheromones) {
     let leftPheromoneCount = 0
     let leftPheromoneStrength = 0
