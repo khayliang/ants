@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
 
-const ants = 30
+const ants = 100
 
 const app = new Application({
   width: window.innerWidth,
@@ -46,8 +46,8 @@ const removeInteractableObject = (obj) => {
 addInteractableObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
-  const length = 70
-  const interval = 10
+  const length = 100
+  const interval = 20
   const lifetime = interval * length
 
   const trail = new PheromoneTrail({
@@ -70,8 +70,8 @@ for (let i = 0; i !== ants; i += 1) {
     getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
     getClassInstancesAtCoords: (coords, classType) =>
       grid.getClassInstancesInMultipleCoords(coords, classType),
-    viewDistance: 30,
-    fov: Math.PI / 6,
+    viewDistance: 50,
+    fov: Math.PI / 4,
   })
   ant.setEye(eye)
 
@@ -80,7 +80,7 @@ for (let i = 0; i !== ants; i += 1) {
   app.ticker.add(() => ant.update())
 }
 
-const foods = 50
+const foods = 1000
 const foodSourceCoords = {x: 450, y: 150}
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
