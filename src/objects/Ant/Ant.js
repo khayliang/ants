@@ -55,7 +55,7 @@ export default class Ant extends GameObject {
     return this.state.getDirection()
   }
 
-  getStrongestPheromoneRadDiff(pheromones) {
+  getStrongestPheromoneDirection(pheromones) {
     let leftPheromoneCount = 0
     let leftPheromoneStrength = 0
     let leftRadSum = 0
