@@ -6,6 +6,8 @@ This application is an ant colony simulation built with pixi.js. The fundamental
 Doesn't work well on mobile.
 
 # Setup
+```
 git clone https://github.com/khayliang/ants.git
 npm i
 npm start
+```
