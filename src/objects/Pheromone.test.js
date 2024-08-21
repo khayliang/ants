@@ -22,12 +22,12 @@ test('Pheromone can expire after a number of updates', () => {
   expect(pheromone.update().isExpired()).toEqual(true)
 })
 
-test('Pheromone can give strength', () => {
+test('Pheromone strength expires over time', () => {
   const pheromone = new Pheromone()
   const lifetime = 5
   pheromone.setLifetime(lifetime)
   pheromone.update() // age: 1
   pheromone.update() // age: 2
 
-  expect(pheromone.getStrength()).toEqual(2/5)
+  expect(pheromone.getStrength()).toEqual(3/5)
 })
