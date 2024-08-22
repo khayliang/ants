@@ -57,7 +57,7 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   const ant = new Ant({
-    getRandomValue: () => (Math.random() - 0.5) * 0.5,
+    getRandomValue: () => (Math.random() - 0.5) * 0.2,
     initialRadians: Math.random() * Math.PI * 2,
     trail,
     speed: 3,
@@ -71,7 +71,7 @@ for (let i = 0; i !== ants; i += 1) {
     getNearbyClassInstances: (coords, classType) =>
       grid.getNearbyClassInstances(coords, classType),
     viewDistance: 50,
-    fov: Math.PI / 4,
+    fov: Math.PI / 2,
   })
   ant.setEye(eye)
 

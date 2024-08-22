@@ -25,7 +25,7 @@ export default class StateNoFood {
       const foodPheromones = this.ant.eye.getNearbyClassInstances(PheromoneFood)
       return (
         this.ant.getRadians() +
-        this.ant.getStrongestPheromoneDirection(foodPheromones) * 0.1 +
+        this.ant.getStrongestPheromoneDirection(foodPheromones) * this.ant.turnSpeed +
         this.ant.getRandomValue()
       )
     }

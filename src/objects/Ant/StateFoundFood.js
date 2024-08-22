@@ -28,7 +28,7 @@ export default class StateFoundFood {
         return flipRadians(this.ant.getRadians())
       }
       const radiansDiff = this.ant.radiansDiffFrom(foodCoords)
-      return this.ant.getRadians() + radiansDiff * 0.7 + this.ant.getRandomValue()
+      return this.ant.getRadians() + radiansDiff * this.ant.turnSpeed + this.ant.getRandomValue()
     }
     const newState = new StateNoFood(this.ant)
     this.ant.setState(newState)

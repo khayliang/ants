@@ -13,7 +13,7 @@ export default class Ant extends GameObject {
     interval = 10,
     speed = 1,
     reachDistance = 1,
-    turnSpeed = 1,
+    turnSpeed = 0.4,
   } = {}) {
     super(new AntGraphic())
 

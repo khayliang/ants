@@ -28,14 +28,14 @@ export default class StateHeldFood {
         return flipRadians(this.ant.getRadians())
       }
       const radiansDiff = this.ant.radiansDiffFrom(nestCoords)
-      return this.ant.getRadians() + radiansDiff * 0.4 + this.ant.getRandomValue()
+      return this.ant.getRadians() + radiansDiff * this.ant.turnSpeed + this.ant.getRandomValue()
     }
 
     const pheromones = this.ant.eye.getNearbyClassInstances(PheromoneNavigation)
 
     return (
       this.ant.getRadians() +
-      this.ant.getStrongestPheromoneDirection(pheromones) * 0.1 +
+      this.ant.getStrongestPheromoneDirection(pheromones) * this.ant.turnSpeed +
       this.ant.getRandomValue()
     )
   }
