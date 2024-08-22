@@ -24,8 +24,8 @@ test('When eye detects nest, ant changes direction to nest', () => {
   const ant = new Ant({
     initialRadians,
     eye: {
-      getNearbyClassInstances: () => [nest]
-    }
+      getNearbyClassInstances: () => [nest],
+    },
   })
   const food = new Food()
   nest.setCoords({ x: 5, y: 5 })
@@ -39,7 +39,7 @@ test('When eye detects nest, ant changes direction to nest', () => {
 test('Ant moves right if navigation pheromone right', () => {
   const ant = new Ant({
     speed: 1,
-    initialRadians: 0
+    initialRadians: 0,
   })
   const pheromone = new PheromoneNavigation()
 
@@ -50,7 +50,7 @@ test('Ant moves right if navigation pheromone right', () => {
     getNearbyObjects: () => [pheromone],
     getNearbyClassInstances: (instance) => {
       if (instance === PheromoneNavigation) return [pheromone]
-      else return []
+      return []
     },
   })
   const state = new StateHeldFood(ant)
@@ -63,7 +63,7 @@ test('Ant moves right if navigation pheromone right', () => {
 test('Ant moves left if navigation pheromone left', () => {
   const ant = new Ant({
     speed: 1,
-    initialRadians: 0
+    initialRadians: 0,
   })
   const pheromone = new PheromoneNavigation()
 
@@ -73,7 +73,7 @@ test('Ant moves left if navigation pheromone left', () => {
     getNearbyObjects: () => [pheromone],
     getNearbyClassInstances: (instance) => {
       if (instance === PheromoneNavigation) return [pheromone]
-      else return []
+      return []
     },
   })
   const state = new StateHeldFood(ant)

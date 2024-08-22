@@ -21,12 +21,13 @@ export default class StateNoFood {
         const newState = new StateFoundFood(this.ant, food)
         this.ant.setState(newState)
         return newState.getDirection()
-      } else {
-        const foodPheromones = this.ant.eye.getNearbyClassInstances(PheromoneFood)
-
-        
-        return this.ant.getRadians() + this.ant.getStrongestPheromoneDirection(foodPheromones) * 0.1 + this.ant.getRandomValue()
       }
+      const foodPheromones = this.ant.eye.getNearbyClassInstances(PheromoneFood)
+      return (
+        this.ant.getRadians() +
+        this.ant.getStrongestPheromoneDirection(foodPheromones) * 0.1 +
+        this.ant.getRandomValue()
+      )
     }
     return this.ant.getRadians() + this.ant.getRandomValue()
   }

@@ -23,7 +23,7 @@ export default class Pheromone extends GameObject {
     this.lifetime = lifetime
   }
 
-  getStrength(){
-    return 1 - (this.age / this.lifetime)
+  getStrength() {
+    return 1 - this.age / this.lifetime
   }
 }

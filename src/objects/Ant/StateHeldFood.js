@@ -31,8 +31,11 @@ export default class StateHeldFood {
     }
 
     const pheromones = this.ant.eye.getNearbyClassInstances(PheromoneNavigation)
-    
-    return this.ant.getRadians() + this.ant.getStrongestPheromoneDirection(pheromones) * 0.1 + this.ant.getRandomValue()
-      
+
+    return (
+      this.ant.getRadians() +
+      this.ant.getStrongestPheromoneDirection(pheromones) * 0.1 +
+      this.ant.getRandomValue()
+    )
   }
 }

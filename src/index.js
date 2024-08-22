@@ -81,14 +81,14 @@ for (let i = 0; i !== ants; i += 1) {
 }
 
 const foods = 1000
-const foodSourceCoords = {x: 450, y: 150}
+const foodSourceCoords = { x: 450, y: 150 }
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
     onTake: () => removeInteractableObject(food),
   })
   food.setCoords({
-    x: foodSourceCoords.x + (Math.random() * 50)-25,
-    y: foodSourceCoords.y + (Math.random() * 50)-25,
+    x: foodSourceCoords.x + Math.random() * 50 - 25,
+    y: foodSourceCoords.y + Math.random() * 50 - 25,
   })
   addInteractableObject(food)
 }

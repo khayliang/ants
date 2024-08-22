@@ -13,7 +13,7 @@ export default class Nest extends GameObject {
     this.ants.push(ant)
   }
 
-  storeFood(){
+  storeFood() {
     this.foodCount += 1
   }
 }

@@ -57,7 +57,7 @@ test('When eye detects food, ant state changes to StateFoundFood', () => {
 test('Ant moves right if food pheromone right', () => {
   const ant = new Ant({
     speed: 1,
-    initialRadians: 0
+    initialRadians: 0,
   })
   const pheromone = new PheromoneFood()
 
@@ -68,7 +68,7 @@ test('Ant moves right if food pheromone right', () => {
     getNearbyObjects: () => [pheromone],
     getNearbyClassInstances: (instance) => {
       if (instance === PheromoneFood) return [pheromone]
-      else return []
+      return []
     },
   })
   const state = new StateNoFood(ant)
@@ -81,7 +81,7 @@ test('Ant moves right if food pheromone right', () => {
 test('Ant moves left if food pheromone left', () => {
   const ant = new Ant({
     speed: 1,
-    initialRadians: 0
+    initialRadians: 0,
   })
   const pheromone = new PheromoneFood()
 
@@ -91,7 +91,7 @@ test('Ant moves left if food pheromone left', () => {
     getNearbyObjects: () => [pheromone],
     getNearbyClassInstances: (instance) => {
       if (instance === PheromoneFood) return [pheromone]
-      else return []
+      return []
     },
   })
   const state = new StateNoFood(ant)

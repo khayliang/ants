@@ -13,6 +13,7 @@ export default class Ant extends GameObject {
     interval = 10,
     speed = 1,
     reachDistance = 1,
+    turnSpeed = 1,
   } = {}) {
     super(new AntGraphic())
 
@@ -27,6 +28,7 @@ export default class Ant extends GameObject {
     this.speed = speed
     this.pheromoneInterval = interval
     this.reachDistance = reachDistance
+    this.turnSpeed = turnSpeed
 
     this.targetFood = null
     this.heldFood = null
@@ -56,6 +58,7 @@ export default class Ant extends GameObject {
   }
 
   // TODO: Resolve tight coupling with eye in method below
+  // this should give left right centre
   getStrongestPheromoneDirection(pheromones) {
     let leftPheromoneCount = 0
     let leftPheromoneStrength = 0
@@ -71,26 +74,32 @@ export default class Ant extends GameObject {
 
     const thresholdRad = this.eye.fov / 3
 
-    for(let i = 0; i !== pheromones.length; i += 1){
+    for (let i = 0; i !== pheromones.length; i += 1) {
       const pheromone = pheromones[i]
       const radDiff = this.radiansDiffFrom(pheromone.getCoords())
-      if (radDiff > thresholdRad && radDiff < this.eye.fov){
+      if (radDiff > thresholdRad && radDiff < this.eye.fov) {
         rightPheromoneCount += 1
         rightRadSum += radDiff
         rightPheromoneStrength += pheromone.getStrength()
-      } else if (radDiff < -thresholdRad && radDiff > -this.eye.fov){
+      } else if (radDiff < -thresholdRad && radDiff > -this.eye.fov) {
         leftPheromoneCount += 1
-        leftRadSum += radDiff 
+        leftRadSum += radDiff
         leftPheromoneStrength += pheromone.getStrength()
-      } else if (radDiff > -thresholdRad && radDiff < thresholdRad){
+      } else if (radDiff > -thresholdRad && radDiff < thresholdRad) {
         frontPheromoneCount += 1
         frontRadSum += radDiff
         frontPheromoneStrength += pheromone.getStrength()
       }
 
-      if (leftPheromoneStrength > rightPheromoneStrength && leftPheromoneStrength > frontPheromoneStrength){
+      if (
+        leftPheromoneStrength > rightPheromoneStrength &&
+        leftPheromoneStrength > frontPheromoneStrength
+      ) {
         finalRadDiff = leftRadSum / leftPheromoneCount || 0
-      } else if (rightPheromoneStrength > leftPheromoneStrength && rightPheromoneCount > frontPheromoneStrength){
+      } else if (
+        rightPheromoneStrength > leftPheromoneStrength &&
+        rightPheromoneCount > frontPheromoneStrength
+      ) {
         finalRadDiff = rightRadSum / rightPheromoneCount || 0
       } else {
         finalRadDiff = frontRadSum / frontPheromoneCount || 0

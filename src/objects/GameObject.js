@@ -20,7 +20,7 @@ export default class GameObject {
   }
 
   setRadians(rad) {
-    rad = ((rad + Math.PI) % (2 * Math.PI)) - Math.PI;
+    rad = ((rad + Math.PI) % (2 * Math.PI)) - Math.PI
     if (this.graphic.setRadians) this.graphic.setRadians(rad)
     this.rad = rad
     return this
@@ -52,16 +52,11 @@ export default class GameObject {
     const x = coords.x - myCoords.x
     const y = coords.y - myCoords.y
     const absoluteRadians = Math.atan2(y, x)
-    let radians = absoluteRadians
-    if ((x < 0 && y > 0) || (x < 0 && y < 0)) {
-      radians += Math.PI
-    } else if (x > 0 && y < 0) {
-      radians += Math.PI * 2
-    }
-  
+
     if (absoluteRadians > 0 && this.getRadians() < 0) {
       return absoluteRadians - Math.PI - this.getRadians()
-    } else if (absoluteRadians < 0 && this.getRadians() > 0) {
+    }
+    if (absoluteRadians < 0 && this.getRadians() > 0) {
       return Math.PI - absoluteRadians - this.getRadians()
     }
     return absoluteRadians - this.getRadians()
