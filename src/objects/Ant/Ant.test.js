@@ -29,7 +29,7 @@ test('Ant moves based on return value from getNewDirection', () => {
   const ant = new Ant({
     initialRadians: 2,
   })
-  const newRadians = 555
+  const newRadians = Math.PI / 2
   jest.spyOn(ant, 'getNewDirection').mockImplementation(() => newRadians)
   expect(ant.update().getRadians()).toEqual(newRadians)
 })

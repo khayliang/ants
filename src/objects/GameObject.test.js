@@ -61,14 +61,28 @@ test('Test calculate difference of radians of coords from GameObject', () => {
     const obj = new GameObject(graphic)
     obj.setRadians(0).setCoords({ x: 0, y: 0 })
     const diff = obj.radiansDiffFrom({ x: 5, y: 5 })
-    expect(diff).toEqual(Math.PI / 4)
+    expect(diff.toPrecision(4)).toEqual((Math.PI / 4).toPrecision(4))
   }
   {
     const graphic = new Graphics()
     const obj = new GameObject(graphic)
     obj.setRadians(0).setCoords({ x: 0, y: 0 })
     const diff = obj.radiansDiffFrom({ x: 5, y: -5 })
-    expect(diff).toEqual( -Math.PI / 4)
+    expect(diff.toPrecision(4)).toEqual((-Math.PI / 4).toPrecision(4))
+  }
+  {
+    const graphic = new Graphics()
+    const obj = new GameObject(graphic)
+    obj.setRadians(0).setCoords({ x: 0, y: 0 })
+    const diff = obj.radiansDiffFrom({ x: -5, y: -5 })
+    expect(diff.toPrecision(4)).toEqual((-(3*Math.PI) / 4).toPrecision(4))
+  }
+  {
+    const graphic = new Graphics()
+    const obj = new GameObject(graphic)
+    obj.setRadians(0).setCoords({ x: 0, y: 0 })
+    const diff = obj.radiansDiffFrom({ x: -5, y: 5 })
+    expect(diff.toPrecision(4)).toEqual(((3*Math.PI) / 4).toPrecision(4))
   }
 
   {
@@ -86,4 +100,15 @@ test('Test calculate difference of radians of coords from GameObject', () => {
     const diff = obj.radiansDiffFrom({ x: 5, y: 0 })
     expect(diff < 0).toEqual(true)
   }
+})
+
+test('Radians of gameobject must be between -pi and pi', () => {
+  const graphic = new Graphics()
+  const obj = new GameObject(graphic)
+  obj.setRadians((Math.PI / 4) + Math.PI)
+  expect(obj.getRadians().toPrecision(4)).toEqual((-(3*Math.PI)/4).toPrecision(4))
+  obj.setRadians((Math.PI / 4) + 2 *Math.PI)
+  expect(obj.getRadians().toPrecision(4)).toEqual((Math.PI/4).toPrecision(4))
+  obj.setRadians((Math.PI / 4) + 3 * Math.PI)
+  expect(obj.getRadians().toPrecision(4)).toEqual((-(3*Math.PI)/4).toPrecision(4))
 })
