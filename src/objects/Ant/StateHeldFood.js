@@ -1,4 +1,5 @@
 import calculateDistanceBetweenCoords from '../../utils/calcDistanceBetweenCoords'
+import flipRadians from '../../utils/flipRadians'
 import Nest from '../Nest'
 import PheromoneFood from '../PheromoneFood'
 import PheromoneNavigation from '../PheromoneNavigation'
@@ -24,10 +25,10 @@ export default class StateHeldFood {
         const newState = new StateNoFood(this.ant)
         // const newState = new StateNoFood(this.ant)
         this.ant.setState(newState)
-        return this.ant.getRadians() - Math.PI
+        return flipRadians(this.ant.getRadians())
       }
       const radiansDiff = this.ant.radiansDiffFrom(nestCoords)
-      return this.ant.getRadians() + radiansDiff * 0.1 + this.ant.getRandomValue()
+      return this.ant.getRadians() + radiansDiff * 0.4 + this.ant.getRandomValue()
     }
 
     const pheromones = this.ant.eye.getNearbyClassInstances(PheromoneNavigation)
