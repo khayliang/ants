@@ -56,6 +56,49 @@ test('Object added to grid can be gotten by coords', () => {
   expect(objs[0]).toBe(obj)
 })
 
+test('Get all objects in neigbouring tiles given a coordinate', () => {
+  const tileSize = 10
+  const width = 50
+  const height = 50
+  const grid = new PartitionGrid({
+    width,
+    height,
+    tileSize,
+  })
+  const coords = { x: 25, y: 25 }
+  const obj1 = new GameObject(new Graphics())
+  obj1.setCoords(coords)
+  grid.addObject(obj1)
+  const obj2 = new GameObject(new Graphics())
+  obj2.setCoords({ x: 25, y: 15 })
+  grid.addObject(obj2)
+  const obj3 = new GameObject(new Graphics())
+  obj3.setCoords({ x: 25, y: 35 })
+  grid.addObject(obj3)
+  const obj4 = new GameObject(new Graphics())
+  obj4.setCoords({ x: 15, y: 25 })
+  grid.addObject(obj4)
+  const obj5 = new GameObject(new Graphics())
+  obj5.setCoords({ x: 35, y: 25 })
+  grid.addObject(obj5)
+  const obj6 = new GameObject(new Graphics())
+  obj6.setCoords({ x: 35, y: 15 })
+  grid.addObject(obj6)
+  const obj7 = new GameObject(new Graphics())
+  obj7.setCoords({ x: 35, y: 35 })
+  grid.addObject(obj7)
+  const obj8 = new GameObject(new Graphics())
+  obj8.setCoords({ x: 15, y: 35 })
+  grid.addObject(obj8)
+  const obj9 = new GameObject(new Graphics())
+  obj9.setCoords({ x: 15, y: 15 })
+  grid.addObject(obj9)
+  const objs = grid.getNearbyObjects(coords)
+  expect(objs).toEqual(
+    expect.arrayContaining([obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9]),
+  )
+})
+
 test('Objects from multiple coords can be gottern from grid', () => {
   const tileSize = 10
   const width = 50

@@ -43,6 +43,22 @@ export default class PartitionGrid {
     this.tiles[pos.y][pos.x].removeObject(obj)
   }
 
+  getNearbyObjects({ x, y }) {
+    const mapSize = { width: this.width, height: this.height }
+    const coordsList = [
+      { x, y },
+      getCoordsWithinMap({ x, y: y + this.tileSize }, mapSize),
+      getCoordsWithinMap({ x, y: y - this.tileSize }, mapSize),
+      getCoordsWithinMap({ x: x + this.tileSize, y }, mapSize),
+      getCoordsWithinMap({ x: x + this.tileSize, y: y + this.tileSize }, mapSize),
+      getCoordsWithinMap({ x: x + this.tileSize, y: y - this.tileSize }, mapSize),
+      getCoordsWithinMap({ x: x - this.tileSize, y }, mapSize),
+      getCoordsWithinMap({ x: x - this.tileSize, y: y + this.tileSize }, mapSize),
+      getCoordsWithinMap({ x: x - this.tileSize, y: y - this.tileSize }, mapSize),
+    ]
+    return this.getObjectsInMultipleCoords(coordsList)
+  }
+
   getObjectsInCoords(coords) {
     if (doesCoordExceedBounds(coords, { width: this.width, height: this.height })) return []
     const { x, y } = getCoordsWithinMap(coords, { width: this.width, height: this.height })
