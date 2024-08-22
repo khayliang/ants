@@ -6,10 +6,10 @@ import './index.css'
 import Nest from './objects/Nest'
 import PartitionGrid from './partition/PartitionGrid'
 import Food from './objects/Food'
-import Eye from './objects/Eye'
 import PheromoneTrail from './objects/PheromoneTrail'
+import Eye from './objects/Eye'
 
-const ants = 100
+const ants = 50
 
 const app = new Application({
   width: window.innerWidth,
@@ -21,7 +21,7 @@ app.ticker.maxFPS = 60
 const grid = new PartitionGrid({
   width: window.innerWidth,
   height: window.innerHeight,
-  tileSize: 100,
+  tileSize: 30,
 })
 grid.getTiles().forEach((tile) => {
   app.stage.addChild(tile.getGraphic())
@@ -67,9 +67,9 @@ for (let i = 0; i !== ants; i += 1) {
 
   const eye = new Eye({
     object: ant,
-    getObjectsAtCoords: (coords) => grid.getObjectsInMultipleCoords(coords),
-    getClassInstancesAtCoords: (coords, classType) =>
-      grid.getClassInstancesInMultipleCoords(coords, classType),
+    getNearbyObjects: (coords) => grid.getNearbyObjects(coords),
+    getNearbyClassInstances: (coords, classType) =>
+      grid.getNearbyClassInstances(coords, classType),
     viewDistance: 50,
     fov: Math.PI / 4,
   })
