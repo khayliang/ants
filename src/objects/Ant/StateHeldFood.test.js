@@ -52,6 +52,7 @@ test('Ant moves right if navigation pheromone right', () => {
       if (instance === PheromoneNavigation) return [pheromone]
       return []
     },
+    fov: 2
   })
   const state = new StateHeldFood(ant)
 
@@ -75,6 +76,7 @@ test('Ant moves left if navigation pheromone left', () => {
       if (instance === PheromoneNavigation) return [pheromone]
       return []
     },
+    fov: 2
   })
   const state = new StateHeldFood(ant)
 

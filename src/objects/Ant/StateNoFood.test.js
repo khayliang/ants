@@ -70,6 +70,7 @@ test('Ant moves right if food pheromone right', () => {
       if (instance === PheromoneFood) return [pheromone]
       return []
     },
+    fov: 2
   })
   const state = new StateNoFood(ant)
 
@@ -85,14 +86,15 @@ test('Ant moves left if food pheromone left', () => {
   })
   const pheromone = new PheromoneFood()
 
-  ant.setCoords({ x: 0, y: 5 })
-  pheromone.setCoords({ x: 5, y: 0 })
+  ant.setCoords({ x: 0, y: 0.5 })
+  pheromone.setCoords({ x: 0.5, y: 0 })
   ant.setEye({
     getNearbyObjects: () => [pheromone],
     getNearbyClassInstances: (instance) => {
       if (instance === PheromoneFood) return [pheromone]
       return []
     },
+    fov: 2
   })
   const state = new StateNoFood(ant)
 
