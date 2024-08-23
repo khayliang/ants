@@ -11,12 +11,13 @@ export default class Pheromone extends GameObject {
     this.lifetime = lifetime
     this.age = 0
     this.setCoords(coords)
+    // range from 0 to 1
     this.maxStrength = maxStrength
   }
 
   update() {
     this.age += 1
-    this.getGraphic().alpha = 1 - this.age / this.lifetime
+    this.getGraphic().alpha = this.getStrength()
     return this
   }
 
