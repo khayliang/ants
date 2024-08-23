@@ -12,7 +12,7 @@ export default class StateHeldFood {
   }
 
   sprayPheromone() {
-    if (this.ant.trail) this.ant.trail.add(new PheromoneFood(this.ant.getCoords()))
+    if (this.ant.trail) this.ant.trail.add(new PheromoneFood({ coords: this.ant.getCoords() }))
   }
 
   getDirection() {
