@@ -30,3 +30,13 @@ test('Pheromone strength expires over time', () => {
 
   expect(pheromone.getStrength()).toEqual(3 / 5)
 })
+
+test('Pheromone can have max strength that decreases over time', () => {
+  const lifetime = 5
+  const maxStrength = 0.5
+  const pheromone = new Pheromone({ lifetime, maxStrength })
+  pheromone.update() // age: 1
+  pheromone.update() // age: 2
+
+  expect(pheromone.getStrength()).toEqual(3 / 10)
+})
