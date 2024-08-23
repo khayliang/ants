@@ -21,7 +21,7 @@ export default class GameObject {
 
   setRadians(rad) {
     const TWO_PI = 2 * Math.PI
-    rad = rad - (TWO_PI * Math.floor((rad + Math.PI) / TWO_PI))
+    rad -= TWO_PI * Math.floor((rad + Math.PI) / TWO_PI)
     if (this.graphic.setRadians) this.graphic.setRadians(rad)
     this.rad = rad
     return this
@@ -55,7 +55,7 @@ export default class GameObject {
     const absoluteRadians = Math.atan2(y, x)
     let diff = (absoluteRadians - this.getRadians()) % Math.PI
     if (diff < -Math.PI) {
-      diff += 2 * Math.PI 
+      diff += 2 * Math.PI
     } else if (diff > Math.PI) {
       diff -= 2 * Math.PI
     }

@@ -137,9 +137,7 @@ test('Get all class instances in neigbouring tiles given a coordinate', () => {
   obj9.setCoords({ x: 15, y: 15 })
   grid.addObject(obj9)
   const objs = grid.getNearbyClassInstances(coords, Pheromone)
-  expect(objs).toEqual(
-    expect.arrayContaining([obj1, obj3]),
-  )
+  expect(objs).toEqual(expect.arrayContaining([obj1, obj3]))
 })
 
 test('Objects from multiple coords can be gottern from grid', () => {

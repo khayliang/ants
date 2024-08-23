@@ -59,7 +59,7 @@ export default class PartitionGrid {
     return this.getObjectsInMultipleCoords(coordsList)
   }
 
-  getNearbyClassInstances({x, y}, classType) {
+  getNearbyClassInstances({ x, y }, classType) {
     const mapSize = { width: this.width, height: this.height }
     const coordsList = [
       { x, y },

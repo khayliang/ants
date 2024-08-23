@@ -68,8 +68,7 @@ for (let i = 0; i !== ants; i += 1) {
   const eye = new Eye({
     object: ant,
     getNearbyObjects: (coords) => grid.getNearbyObjects(coords),
-    getNearbyClassInstances: (coords, classType) =>
-      grid.getNearbyClassInstances(coords, classType),
+    getNearbyClassInstances: (coords, classType) => grid.getNearbyClassInstances(coords, classType),
     viewDistance: 50,
     fov: Math.PI / 2,
   })

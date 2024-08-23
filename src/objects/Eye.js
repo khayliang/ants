@@ -16,7 +16,8 @@ export default class Eye {
     this.fov = fov
 
     this.getNearbyObjects = () => getNearbyObjects(this.object.getCoords())
-    this.getNearbyClassInstances = (classType) => getNearbyClassInstances(this.object.getCoords(), classType)
+    this.getNearbyClassInstances = (classType) =>
+      getNearbyClassInstances(this.object.getCoords(), classType)
   }
 
   getNearbyObjects() {
