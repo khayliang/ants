@@ -46,6 +46,21 @@ test('Ant can lay down a pheromone trail', () => {
   expect(addFn).toHaveBeenCalled()
 })
 
+test('Ant can lay down max amount of pheromones', () => {
+  const interval = 5
+  const ant = new Ant({ interval, maxPheromones: 5 })
+
+  const sprayPheromoneSpy = jest.spyOn(ant, 'sprayPheromone')
+
+  const expectedSprayedAmt = 5
+  const updateAmt = interval * expectedSprayedAmt
+  for (let i = 0; i !== updateAmt; i += 1) {
+    ant.update()
+  }
+  expect(sprayPheromoneSpy).toHaveBeenCalledTimes(5)
+})
+
+
 test('Ant sprays a pheromone every interval', () => {
   const interval = 5
   const ant = new Ant({ interval })

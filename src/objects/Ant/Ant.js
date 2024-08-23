@@ -14,6 +14,7 @@ export default class Ant extends GameObject {
     speed = 1,
     reachDistance = 1,
     turnSpeed = 0.4,
+    maxPheromones = 50,
   } = {}) {
     super(new AntGraphic())
 
@@ -29,10 +30,12 @@ export default class Ant extends GameObject {
     this.pheromoneInterval = interval
     this.reachDistance = reachDistance
     this.turnSpeed = turnSpeed
+    this.maxPheromones = maxPheromones
 
     this.targetFood = null
     this.heldFood = null
     this.updateAmt = 0
+    this.pheromonesSprayed = 0
   }
 
   setEye(eye) {
@@ -118,15 +121,18 @@ export default class Ant extends GameObject {
     }
     this.setCoords(newCoords)
     this.setRadians(direction)
-
-    if (this.updateAmt % this.pheromoneInterval === 0) {
-      this.sprayPheromone()
-      this.updateAmt = 0
+    if (this.pheromonesSprayed <= this.maxPheromones) {
+      if ((this.updateAmt % this.pheromoneInterval) === 0) {
+        this.sprayPheromone()
+        this.updateAmt = 1
+        this.pheromonesSprayed += 1
+      } else {
+        this.updateAmt += 1
+      }
     }
 
     this.trail.update()
 
-    this.updateAmt += 1
     return this
   }
 }
