@@ -57,13 +57,13 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   const ant = new Ant({
-    getRandomValue: () => (Math.random() - 0.5) * 0.2,
+    getRandomValue: () => (Math.random() - 0.5) * 0.3,
     initialRadians: Math.random() * Math.PI * 2,
     trail,
     speed: 3,
     interval,
     reachDistance: 10,
-    maxPheromones: lifetime
+    maxPheromones: lifetime,
   })
 
   const eye = new Eye({

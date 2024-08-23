@@ -2,11 +2,11 @@ import GameObject from './GameObject'
 import PheremoneGraphic from './PheremoneGraphic'
 
 export default class Pheromone extends GameObject {
-  constructor({ 
-    coords = { x: 0, y: 0 }, 
-    lifetime = 1, 
+  constructor({
+    coords = { x: 0, y: 0 },
+    lifetime = 1,
     maxStrength = 1,
-    graphics = new PheremoneGraphic() 
+    graphics = new PheremoneGraphic(),
   } = {}) {
     super(graphics)
     this.lifetime = lifetime
@@ -31,6 +31,6 @@ export default class Pheromone extends GameObject {
   }
 
   getStrength() {
-    return this.maxStrength - ((this.age / this.lifetime) * this.maxStrength)
+    return this.maxStrength - (this.age / this.lifetime) * this.maxStrength
   }
 }

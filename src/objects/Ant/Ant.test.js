@@ -74,7 +74,6 @@ test('Ant can reset pheromones sprayed and spray again', () => {
   expect(sprayPheromoneSpy).toHaveBeenCalledTimes(3)
 })
 
-
 test('Ant sprays a pheromone every interval', () => {
   const interval = 5
   const ant = new Ant({ interval })

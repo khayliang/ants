@@ -54,7 +54,7 @@ export default class Ant extends GameObject {
   }
 
   sprayPheromone() {
-    this.state.sprayPheromone(1 - (this.pheromonesSprayed / this.maxPheromones))
+    this.state.sprayPheromone(1 - this.pheromonesSprayed / this.maxPheromones)
   }
 
   resetPheromones() {
@@ -127,7 +127,7 @@ export default class Ant extends GameObject {
     this.setCoords(newCoords)
     this.setRadians(direction)
     if (this.pheromonesSprayed <= this.maxPheromones) {
-      if ((this.updateAmt % this.pheromoneInterval) === 0) {
+      if (this.updateAmt % this.pheromoneInterval === 0) {
         this.sprayPheromone()
         this.updateAmt = 1
         this.pheromonesSprayed += 1
