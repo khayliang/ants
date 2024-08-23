@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import PheromoneTrail from './objects/PheromoneTrail'
 import Eye from './objects/Eye'
 
-const ants = 1
+const ants = 50
 
 const app = new Application({
   width: window.innerWidth,
@@ -46,7 +46,7 @@ const removeInteractableObject = (obj) => {
 addInteractableObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
-  const length = 100
+  const length = 40
   const interval = 7
   const lifetime = interval * length
 

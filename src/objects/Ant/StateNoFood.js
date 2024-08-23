@@ -10,9 +10,9 @@ export default class StateNoFood {
     this.ant = ant
   }
 
-  sprayPheromone() {
+  sprayPheromone(strength) {
     if (this.ant.trail) {
-      this.ant.trail.add(new PheromoneNavigation({ coords: this.ant.getCoords() }))
+      this.ant.trail.add(new PheromoneNavigation({ coords: this.ant.getCoords(), maxStrength: strength }))
     }
   }
 
