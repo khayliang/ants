@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import PheromoneTrail from './objects/PheromoneTrail'
 import Eye from './objects/Eye'
 
-const ants = 50
+const ants = 1
 
 const app = new Application({
   width: window.innerWidth,
@@ -63,6 +63,7 @@ for (let i = 0; i !== ants; i += 1) {
     speed: 3,
     interval,
     reachDistance: 10,
+    maxPheromones: lifetime
   })
 
   const eye = new Eye({

@@ -6,7 +6,8 @@ export default class Pheromone extends GameObject {
     coords = { x: 0, y: 0 }, 
     lifetime = 1, 
     maxStrength = 1,
-    graphics = new PheremoneGraphic() } = {}) {
+    graphics = new PheremoneGraphic() 
+  } = {}) {
     super(graphics)
     this.lifetime = lifetime
     this.age = 0

@@ -74,3 +74,15 @@ test('When pheromone in trail expires, pheremone is unmounted from app', () => {
   expect(removePheromoneFromMapMock).toHaveBeenCalled()
   expect(trail.getPheromones().length).toBe(0)
 })
+
+test('Phermone ', () => {
+  const PheromoneTrail = require('./PheromoneTrail').default
+
+  const trail = new PheromoneTrail({ lifetime: 1 })
+  const pheromone = new Pheromone({ x: 0, y: 0 })
+  trail.add(pheromone)
+
+  const arr = trail.getPheromones()
+  expect(arr.length).toEqual(1)
+  expect(arr[0]).toBeInstanceOf(Pheromone)
+})
