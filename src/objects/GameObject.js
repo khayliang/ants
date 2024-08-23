@@ -20,7 +20,8 @@ export default class GameObject {
   }
 
   setRadians(rad) {
-    rad = ((rad + Math.PI) % (2 * Math.PI)) - Math.PI
+    const TWO_PI = 2 * Math.PI
+    rad = rad - (TWO_PI * Math.floor((rad + Math.PI) / TWO_PI))
     if (this.graphic.setRadians) this.graphic.setRadians(rad)
     this.rad = rad
     return this
