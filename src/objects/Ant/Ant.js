@@ -53,7 +53,11 @@ export default class Ant extends GameObject {
   }
 
   sprayPheromone() {
-    this.state.sprayPheromone()
+    this.state.sprayPheromone(this.pheromonesSprayed / this.maxPheromones)
+  }
+
+  resetPheromones() {
+    this.pheromonesSprayed = 0
   }
 
   getNewDirection() {

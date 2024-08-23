@@ -11,8 +11,8 @@ export default class StateHeldFood {
     this.heldFood = food
   }
 
-  sprayPheromone() {
-    if (this.ant.trail) this.ant.trail.add(new PheromoneFood({ coords: this.ant.getCoords() }))
+  sprayPheromone(strength) {
+    if (this.ant.trail) this.ant.trail.add(new PheromoneFood({ coords: this.ant.getCoords(), maxStrength: strength }))
   }
 
   getDirection() {
