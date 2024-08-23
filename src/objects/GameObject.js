@@ -52,12 +52,13 @@ export default class GameObject {
     const myCoords = this.getCoords()
     const x = coords.x - myCoords.x
     const y = coords.y - myCoords.y
-    const absoluteRadians = Math.atan2(y, x)
-    let diff = (absoluteRadians - this.getRadians()) % Math.PI
-    if (diff < -Math.PI) {
-      diff += 2 * Math.PI
-    } else if (diff > Math.PI) {
-      diff -= 2 * Math.PI
+    const absoluteRadians = (Math.atan2(y, x) + (Math.PI * 2)) % (Math.PI * 2)
+    const thisAbsoluteRadians = (this.getRadians() + (Math.PI * 2)) % (Math.PI * 2)
+    let diff = absoluteRadians - thisAbsoluteRadians
+    if (diff > Math.PI) {
+      diff -= (Math.PI * 2)
+    } else if (diff < -Math.PI) {
+      diff += (Math.PI * 2)
     }
     return diff
   }
