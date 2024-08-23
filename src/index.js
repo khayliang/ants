@@ -46,7 +46,7 @@ const removeInteractableObject = (obj) => {
 addInteractableObject(nest)
 
 for (let i = 0; i !== ants; i += 1) {
-  const length = 40
+  const length = 50
   const interval = 7
   const lifetime = interval * length
 
@@ -57,7 +57,7 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   const ant = new Ant({
-    getRandomValue: () => (Math.random() - 0.5) * 0.3,
+    getRandomValue: () => (Math.random() - 0.5) * 0.35,
     initialRadians: Math.random() * Math.PI * 2,
     trail,
     speed: 3,
