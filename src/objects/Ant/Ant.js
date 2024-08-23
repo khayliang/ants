@@ -45,6 +45,7 @@ export default class Ant extends GameObject {
 
   setState(state) {
     this.state = state
+    this.resetPheromones()
     return this
   }
 
