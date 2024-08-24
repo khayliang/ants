@@ -9,7 +9,7 @@ import Food from './objects/Food'
 import PheromoneTrail from './objects/PheromoneTrail'
 import Eye from './objects/Eye'
 
-const ants = 50
+const ants = 100
 
 const app = new Application({
   width: window.innerWidth,
@@ -57,13 +57,14 @@ for (let i = 0; i !== ants; i += 1) {
   })
 
   const ant = new Ant({
-    getRandomValue: () => (Math.random() - 0.5) * 0.35,
+    getRandomValue: () => (Math.random() - 0.5) * 0.5,
     initialRadians: Math.random() * Math.PI * 2,
     trail,
-    speed: 3,
+    speed: 5,
     interval,
     reachDistance: 10,
     maxPheromones: lifetime,
+    turnSpeed: 0.2
   })
 
   const eye = new Eye({
@@ -81,7 +82,7 @@ for (let i = 0; i !== ants; i += 1) {
 }
 
 const foods = 1000
-const foodSourceCoords = { x: 450, y: 150 }
+const foodSourceCoords = { x: 345, y: 876 }
 for (let i = 0; i !== foods; i += 1) {
   const food = new Food({
     onTake: () => removeInteractableObject(food),
